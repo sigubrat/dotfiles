@@ -28,12 +28,12 @@ pkgs.writeShellScriptBin "setup-monitors" ''
 
     # Move existing workspaces first
     hyprctl dispatch moveworkspacetomonitor 1 "desc:$MONITOR_LEFT_DESC"
-    hyprctl dispatch moveworkspacetomonitor 4 "desc:$MONITOR_LEFT_DESC"
 
     hyprctl dispatch moveworkspacetomonitor 2 "desc:$MONITOR_MIDDLE_DESC"
     hyprctl dispatch moveworkspacetomonitor 3 "desc:$MONITOR_MIDDLE_DESC"
     hyprctl dispatch moveworkspacetomonitor 5 "desc:$MONITOR_MIDDLE_DESC"
 
+    hyprctl dispatch moveworkspacetomonitor 4 "$LAPTOP"
     hyprctl dispatch moveworkspacetomonitor 6 "$LAPTOP"
 
     # Then set defaults for future workspaces

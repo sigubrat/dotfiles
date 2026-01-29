@@ -101,9 +101,9 @@ in
       "hyprland/workspaces" = {
         format = "{icon}";
         format-icons = {
-          "1" = ""; # dev
+          "1" = "󰈹"; # zen
           "2" = ""; # term
-          "3" = "󰈹"; # zen
+          "3" = ""; # dev
           "4" = ""; # slack
           "5" = ""; # spotify
           "6" = "󰣇"; # system
