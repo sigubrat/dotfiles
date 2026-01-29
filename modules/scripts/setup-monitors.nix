@@ -24,27 +24,33 @@ pkgs.writeShellScriptBin "setup-monitors" ''
 
     hyprctl keyword monitor "desc:$MONITOR_LEFT_DESC,2560x1440@60,0x0,1"
     hyprctl keyword monitor "desc:$MONITOR_MIDDLE_DESC,2560x1440@60,2560x0,1"
-    hyprctl keyword monitor "$LAPTOP,1920x1080@60,5120x0,1"
+    hyprctl keyword monitor "$LAPTOP,1920x1200@60,5120x0,1"
 
     # Move existing workspaces first
-    hyprctl dispatch moveworkspacetomonitor 1 "desc:$MONITOR_LEFT_DESC"
+    # Workspace 1 (Zen) and 4 (Discord/Slack) go to laptop
+    hyprctl dispatch moveworkspacetomonitor 1 "$LAPTOP"
+    hyprctl dispatch moveworkspacetomonitor 4 "$LAPTOP"
 
-    hyprctl dispatch moveworkspacetomonitor 2 "desc:$MONITOR_MIDDLE_DESC"
+    # Workspace 2 (Terminal) goes to left monitor
+    hyprctl dispatch moveworkspacetomonitor 2 "desc:$MONITOR_LEFT_DESC"
+
+    # Workspaces 3, 5, 6 go to middle monitor
     hyprctl dispatch moveworkspacetomonitor 3 "desc:$MONITOR_MIDDLE_DESC"
     hyprctl dispatch moveworkspacetomonitor 5 "desc:$MONITOR_MIDDLE_DESC"
-
-    hyprctl dispatch moveworkspacetomonitor 4 "$LAPTOP"
-    hyprctl dispatch moveworkspacetomonitor 6 "$LAPTOP"
+    hyprctl dispatch moveworkspacetomonitor 6 "desc:$MONITOR_MIDDLE_DESC"
 
     # Then set defaults for future workspaces
-    hyprctl keyword workspace "1,monitor:desc:$MONITOR_LEFT_DESC"
-    hyprctl keyword workspace "4,monitor:desc:$MONITOR_LEFT_DESC"
+    hyprctl keyword workspace "1,monitor:$LAPTOP"
+    hyprctl keyword workspace "4,monitor:$LAPTOP"
 
-    hyprctl keyword workspace "2,monitor:desc:$MONITOR_MIDDLE_DESC"
+    hyprctl keyword workspace "2,monitor:desc:$MONITOR_LEFT_DESC"
+
     hyprctl keyword workspace "3,monitor:desc:$MONITOR_MIDDLE_DESC"
     hyprctl keyword workspace "5,monitor:desc:$MONITOR_MIDDLE_DESC"
+    hyprctl keyword workspace "6,monitor:desc:$MONITOR_MIDDLE_DESC"
 
-    hyprctl keyword workspace "6,monitor:$LAPTOP"
+    # Arrange the laptop layout after a short delay
+    (sleep 2 && arrange-laptop-layout) &
 
   else
     echo "Laptop-only setup"

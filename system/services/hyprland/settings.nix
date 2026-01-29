@@ -157,6 +157,9 @@
     # Simplified workspace rules
     workspace = [
       "special:magic, gapsin:20, gapsout:40"
+      # Workspace 1 (Zen) and 4 (Discord/Slack) on laptop
+      "1, monitor:eDP-1, default:true"
+      "4, monitor:eDP-1"
     ];
 
     xwayland.force_zero_scaling = true;
