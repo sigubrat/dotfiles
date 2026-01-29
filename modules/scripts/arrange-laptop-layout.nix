@@ -26,10 +26,9 @@ pkgs.writeShellScriptBin "arrange-laptop-layout" ''
 
   echo "Laptop: ''${LAPTOP_WIDTH}x''${LAPTOP_HEIGHT} at ''${LAPTOP_X},''${LAPTOP_Y}"
   echo "Left half: ''${HALF_WIDTH}x''${LAPTOP_HEIGHT} at ''${LAPTOP_X},''${LAPTOP_Y}"
-  echo "Top-right: ''${HALF_WIDTH}x''${HALF_HEIGHT} at ''${RIGHT_X},''${LAPTOP_Y}"
-  echo "Bottom-right: ''${HALF_WIDTH}x''${HALF_HEIGHT} at ''${RIGHT_X},''${BOTTOM_Y}"
+  echo "Right half: ''${HALF_WIDTH}x''${LAPTOP_HEIGHT} at ''${RIGHT_X},''${LAPTOP_Y}"
 
-  # Function to position window
+  # Function to position window as floating
   position_window() {
     local class="$1"
     local x="$2"
@@ -53,14 +52,16 @@ pkgs.writeShellScriptBin "arrange-laptop-layout" ''
 
   sleep 0.5
 
-  # Position Zen browser on the left half
+  # Position Entertainment Zen browser on the left half (workspace 4)
   position_window "zen" "$LAPTOP_X" "$LAPTOP_Y" "$HALF_WIDTH" "$LAPTOP_HEIGHT"
 
-  # Position Discord on top-right quarter
-  position_window "discord" "$RIGHT_X" "$LAPTOP_Y" "$HALF_WIDTH" "$HALF_HEIGHT"
+  # Position Discord on right half - full height (workspace 5)
+  # Discord and Slack overlap - whichever is focused shows on top
+  position_window "discord" "$RIGHT_X" "$LAPTOP_Y" "$HALF_WIDTH" "$LAPTOP_HEIGHT"
 
-  # Position Slack on bottom-right quarter
-  position_window "Slack" "$RIGHT_X" "$BOTTOM_Y" "$HALF_WIDTH" "$HALF_HEIGHT"
+  # Position Slack on right half - full height (workspace 6)
+  # Overlaps with Discord
+  position_window "Slack" "$RIGHT_X" "$LAPTOP_Y" "$HALF_WIDTH" "$LAPTOP_HEIGHT"
 
   echo "Laptop layout arranged"
 ''
