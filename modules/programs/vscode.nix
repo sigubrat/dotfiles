@@ -72,9 +72,11 @@ in
       type = lib.types.enum [
         "dark"
         "light"
+        "tokyo-night"
+        "tokyo-night-storm"
         "catppuccin"
       ];
-      default = "catppuccin";
+      default = "tokyo-night-storm";
       description = "VSCode color theme";
     };
   };
@@ -182,6 +184,12 @@ in
                 version = "1.24.0";
                 sha256 = "sha256-2M7N4Ccw9FAaMmG36hGHi6i0i1qR+uPCSgXELAA03Xk=";
               })
+              (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+                name = "tokyo-night";
+                publisher = "enkia";
+                version = "1.1.2";
+                sha256 = "sha256-oW0bkLKimpcjzxTb/yjShagjyVTUFEg198oPbY5J2hM=";
+              })
 
               # Testing tools - Quokka
               (pkgs.vscode-utils.extensionFromVscodeMarketplace {
@@ -227,7 +235,11 @@ in
           userSettings = {
             # Theme settings
             "workbench.colorTheme" =
-              if cfg.theme == "catppuccin" then
+              if cfg.theme == "tokyo-night-storm" then
+                "Tokyo Night Storm"
+              else if cfg.theme == "tokyo-night" then
+                "Tokyo Night"
+              else if cfg.theme == "catppuccin" then
                 "Catppuccin Mocha"
               else if cfg.theme == "dark" then
                 "Default Dark Modern"
