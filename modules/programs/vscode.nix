@@ -68,12 +68,6 @@ in
       description = "Enable VSCode";
     };
 
-    godMode = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Enable vim mode";
-    };
-
     theme = lib.mkOption {
       type = lib.types.enum [
         "dark"
@@ -174,7 +168,6 @@ in
               unifiedjs.vscode-mdx
               mechatroner.rainbow-csv
             ]
-            ++ lib.optionals cfg.godMode [ vscodevim.vim ]
             ++ [
               # Theme extensions
               (pkgs.vscode-utils.extensionFromVscodeMarketplace {
@@ -248,7 +241,7 @@ in
             "workbench.iconTheme" = "catppuccin-mocha";
 
             # Sidebar placement
-            "workbench.sideBar.location" = "right";
+            "workbench.sideBar.location" = "left";
 
             # Performance improvements for Scala/Metals
             "files.watcherExclude" = {
@@ -513,104 +506,6 @@ in
             # Perform auto-updates
             "extensions.autoCheckUpdates" = true;
             "update.mode" = "default";
-
-            # Vim extension configuration
-            "vim.easyMotion" = true;
-            "vim.incsearch" = true;
-            "vim.useSystemClipboard" = true;
-            "vim.useCtrlKeys" = true;
-            "vim.hlsearch" = true;
-            "vim.leader" = "<space>";
-
-            # Performance settings
-            "extensions.experimental.affinity" =
-              {
-                "vscodevim.vim" = 1;
-              };
-
-            # Insert mode keybindings
-            "vim.insertModeKeyBindings" = [
-              {
-                before = [ "j" "j" ];
-                after = [ "<Esc>" ];
-              }
-              {
-                before = [ "j" "k" ];
-                after = [ "<Esc>" ];
-              }
-            ];
-
-            # Normal mode key bindings (non-recursive)
-            "vim.normalModeKeyBindingsNonRecursive" = [
-              {
-                before = [ "<leader>" "d" ];
-                after = [ "d" "d" ];
-              }
-              {
-                before = [ "<C-n>" ];
-                commands = [ ":nohl" ];
-              }
-              {
-                before = [ "K" ];
-                commands = [ "lineBreakInsert" ];
-                silent = true;
-              }
-              # Additional useful bindings
-              {
-                before = [ "<leader>" "w" ];
-                commands = [ "workbench.action.files.save" ];
-              }
-              {
-                before = [ "<leader>" "q" ];
-                commands = [ "workbench.action.closeActiveEditor" ];
-              }
-              {
-                before = [ "<leader>" "t" ];
-                commands = [ "workbench.action.terminal.toggleTerminal" ];
-              }
-              {
-                before = [ "<leader>" "f" ];
-                commands = [ "workbench.action.findInFiles" ];
-              }
-              {
-                before = [ "<leader>" "p" ];
-                commands = [ "workbench.action.quickOpen" ];
-              }
-              {
-                before = [ "<leader>" "e" ];
-                commands = [ "workbench.explorer.fileView.focus" ];
-              }
-              {
-                before = [ "<leader>" "c" ];
-                commands = [ "editor.action.commentLine" ];
-              }
-              {
-                before = [ "<leader>" "r" ];
-                commands = [ "editor.action.rename" ];
-              }
-              {
-                before = [ "<leader>" "=" ];
-                commands = [ "editor.action.formatDocument" ];
-              }
-              {
-                before = [ "<leader>" "i" ];
-                commands = [ "editor.action.quickFix" ];
-              }
-            ];
-
-            # Handle keys that should bypass vim
-            "vim.handleKeys" = {
-              "<C-a>" = false;
-              "<C-f>" = false;
-              "<C-c>" = false;
-              "<C-v>" = false;
-              "<C-x>" = false;
-              "<C-i>" = false;
-              "<C-w>" = false;
-            };
-
-            # Better scrolling
-            "vim.scroll" = 5;
 
             # Formatter configuration
             "[css]" = {

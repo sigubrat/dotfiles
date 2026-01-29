@@ -6,11 +6,11 @@
 , ...
 }:
 let
-  wallpaper = "${config.home.homeDirectory}/Sources/walls-catppuccin-mocha/flower-branch.png";
+  wallpaper = "${config.home.homeDirectory}/Sources/wallpapers/40kship.png";
 
   # Monitor definitions
-  primaryMonitor = "desc:HP Inc. HP E45c G5 CNC50212K0"; # ID 1 (left monitor)
-  fallbackMonitor = "desc:LG Display 0x0791"; # eDP-1 (laptop)
+  primaryMonitor = "desc:Hewlett Packard HP Z27n CNK6481RQ6"; # Middle monitor
+  fallbackMonitor = "desc:AU Optronics 0x229E"; # eDP-1 (laptop)
 in
 {
   options.program.hyprlock = {
