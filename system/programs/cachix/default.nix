@@ -6,7 +6,7 @@
   imports = [
     ./hl.nix
     ./iog.nix
-    ./leif.nix
+    ./sigurd.nix
     ./nix-community.nix
   ];
   nix.settings.substituters = lib.mkAfter [ "https://cache.nixos.org/" ];

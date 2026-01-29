@@ -15,5 +15,5 @@
     docker-compose
   ];
 
-  users.users.leif.extraGroups = [ "docker" ];
+  users.users.sigurd.extraGroups = [ "docker" ];
 }

@@ -77,7 +77,7 @@
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3"; # Never keep more than 3
-      flake = "/home/leif/Sources/dotfiles";
+      flake = "/home/sigurd/Sources/dotfiles";
     };
   };
 }

@@ -28,7 +28,7 @@ in
       # See: https://github.com/nix-community/impermanence/issues/253
       "/usr/systemd-placeholder"
     ];
-    users.leif = {
+    users.sigurd = {
       directories = [
         "Documents"
         "Downloads"

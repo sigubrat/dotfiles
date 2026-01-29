@@ -2,6 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(org-babel-load-file (expand-file-name "/home/leif/Sources/dotfiles/modules/programs/emacs/config.org"))
+(org-babel-load-file (expand-file-name "/home/sigurd/Sources/dotfiles/modules/programs/emacs/config.org"))
 
 ;;; init.el ends here

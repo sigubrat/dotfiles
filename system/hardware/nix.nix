@@ -13,7 +13,7 @@
       auto-optimise-store = true;
       trusted-users = [
         "root"
-        "leif"
+        "sigurd"
         "@wheel"
       ];
       download-buffer-size = 524288000;

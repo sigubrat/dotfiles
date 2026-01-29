@@ -30,7 +30,7 @@ nixos-rebuild switch --flake .#
 
 + ~flake.nix~: Entrypoint for hosts and home configurations. Also exposes a devshell for bootstrapping (~nix develop~ or ~nix-shell~).
 + ~hosts~: NixOS Configurations, accessible via ~nixos-rebuild --flake~.
-  + ~shitbox~:  - HP ZBook Firefly 14
+  + ~williams~:  - HP ZBook Firefly 14
 + ~modules~: My Home-manager configuration, accessible via ~home-manager --flake~
   + Each directory here is a "feature" each ~hm~ configuration can toggle, thus customizing my setup for each machine (be it a server, desktop, laptop, anything really).
 + ~pkgs~: My custom packages. Also accessible via ~nix build~. You can compose these into your own configuration by using my flake's overlay or consume them through NUR.
@@ -45,5 +45,5 @@ Alternatively, you can install these configurations via the install media from t
 3. Run:
 
 #+BEGIN_SRC shell
-nixos-install --flake github:leifeggenfellner/dotfiles#shitbox
+nixos-install --flake github:sigubrat/dotfiles#williams
 #+END_SRC

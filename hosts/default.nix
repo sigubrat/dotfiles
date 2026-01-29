@@ -22,7 +22,7 @@ let
             useUserPackages = true;
             extraSpecialArgs = { inherit inputs self; };
             backupFileExtension = ".hm-backup";
-            users.leif =
+            users.sigurd =
               { ... }:
               {
                 imports = [

@@ -53,13 +53,13 @@ let
 
     # GitHub helper
     github = {
-      user = "leifeggenfellner";
+      user = "sigubrat";
     };
 
     # User identity
     user = {
-      name = "leifeggenfellner";
-      email = "eggenfellner@protonmail.com";
+      name = "sigubrat";
+      email = "sigurdjbratt@hotmail.no";
     };
 
     # Aliases (git subcommands)
@@ -113,8 +113,8 @@ in
         condition = "gitdir:~/Workflow/";
         contents = {
           user = {
-            name = "leifeggenfellner";
-            email = "eggenfellner@protonmail.com";
+            name = "sigubrat";
+            email = "sigurdjbratt@hotmail.no";
           };
         };
       }
@@ -122,8 +122,8 @@ in
         condition = "hasconfig:remote.*. url:ssh://git@github.com:HNIKT-Tjenesteutvikling-Systemutvikling/**";
         contents = {
           user = {
-            name = "leifeggenfellner";
-            email = "eggenfellner@protonmail.com";
+            name = "sigubrat";
+            email = "sigurdjbratt@hotmail.no";
           };
         };
       }

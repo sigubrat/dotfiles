@@ -60,6 +60,6 @@ in
       };
     };
 
-    users.users.leif.extraGroups = [ "libvirtd" ];
+    users.users.sigurd.extraGroups = [ "libvirtd" ];
   };
 }

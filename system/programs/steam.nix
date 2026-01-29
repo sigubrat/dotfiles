@@ -15,7 +15,7 @@
       };
     };
     environment.persistence."/persist" = {
-      users.leif = {
+      users.sigurd = {
         directories = [
           ".steam"
           ".local/share/Steam"

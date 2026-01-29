@@ -12,5 +12,5 @@
     '';
   };
 
-  users.users.leif.extraGroups = [ "networkmanager" ];
+  users.users.sigurd.extraGroups = [ "networkmanager" ];
 }

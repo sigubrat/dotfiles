@@ -7,13 +7,13 @@ install_nixos() {
     echo "NixOS Installation Script"
     echo "=================================="
     echo "Please select a machine to install:"
-    echo "1) shitbox"
+    echo "1) williams"
     echo "=================================="
     read -r -p "Enter your choice (1-5): " choice
 
     case $choice in
         1)
-            machine="shitbox"
+            machine="williams"
             ;;
         *)
             echo "Invalid choice. Please select 1-5."
