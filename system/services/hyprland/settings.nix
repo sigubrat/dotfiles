@@ -157,15 +157,14 @@
     # Simplified workspace rules
     workspace = [
       "special:magic, gapsin:20, gapsout:40"
-      # Workspace 1 (Work Zen) on left monitor
+      # Workspace 1 (Zen) on left monitor
       "1, monitor:desc:Hewlett Packard HP Z27n CNK5440603, default:true"
       # Workspace 2 (VS Code) and 3 (Alacritty) on middle monitor
       "2, monitor:desc:Hewlett Packard HP Z27n CNK6481RQ6, default:true"
       "3, monitor:desc:Hewlett Packard HP Z27n CNK6481RQ6"
-      # Workspace 4 (Entertainment Zen), 5 (Discord), 6 (Slack) on laptop
+      # Workspace 4 (Discord), 5 (Slack) on laptop - fullscreen each
       "4, monitor:eDP-1, default:true"
       "5, monitor:eDP-1"
-      "6, monitor:eDP-1"
     ];
 
     xwayland.force_zero_scaling = true;

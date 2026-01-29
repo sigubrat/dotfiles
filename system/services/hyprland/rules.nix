@@ -30,14 +30,14 @@
       "opacity 0.91 override 0.73 override, match:class ^(Emacs)$"
 
       # Workspace assignments
-      # Note: Zen browser windows are assigned by title in arrange-laptop-layout script
-      # Work Zen (ws1) vs Entertainment Zen (ws4) distinguished by window title
+      # Zen browser not auto-assigned - user decides which workspace
       "workspace 2, match:class ^(code|Code)$"
       "workspace 3, match:class ^(Alacritty|alacritty)$"
-      "workspace 5, match:class ^(discord)$"
-      "workspace 6, match:class ^(Slack)$"
-      "workspace 7, match:class ^(spotify)$"
-      "workspace 8, match:class ^(btop|htop|nvtop|MissionCenter)$"
+      # Laptop workspaces
+      "workspace 4, match:class ^(discord)$"
+      "workspace 5, match:class ^(Slack)$"
+      "workspace 6, match:class ^(spotify)$"
+      "workspace 7, match:class ^(btop|htop|nvtop|MissionCenter)$"
     ];
   };
 }

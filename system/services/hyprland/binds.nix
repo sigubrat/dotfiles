@@ -24,9 +24,6 @@ in
       "${mainMod}, S, exec, ${launch "spotify"}"
       "${mainMod} ${SECONDARY}, D, exec, ${runOnce "pcmanfm"}"
 
-      # Arrange laptop layout (Zen left, Discord/Slack right)
-      "${mainMod} ${SECONDARY}, A, exec, arrange-laptop-layout"
-
       # Lockscreen
       "${mainMod} ${SECONDARY}, L, exec, ${runOnce "hyprlock"}"
 

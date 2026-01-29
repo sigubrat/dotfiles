@@ -101,12 +101,13 @@ in
       "hyprland/workspaces" = {
         format = "{icon}";
         format-icons = {
-          "1" = "󰈹"; # zen
-          "2" = ""; # term
-          "3" = ""; # dev
-          "4" = ""; # slack
-          "5" = ""; # spotify
-          "6" = "󰣇"; # system
+          "1" = "󰈹"; # work zen (left monitor)
+          "2" = ""; # vscode (middle monitor)
+          "3" = ""; # terminal (middle monitor)
+          "4" = "󰙯"; # discord (laptop)
+          "5" = ""; # slack (laptop)
+          "6" = ""; # spotify
+          "7" = ""; # system
         };
         on-click = "activate";
         all-outputs = true;
@@ -117,7 +118,6 @@ in
           "3" = [ ];
           "4" = [ ];
           "5" = [ ];
-          "6" = [ ];
         };
       };
 

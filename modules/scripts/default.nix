@@ -6,7 +6,6 @@ let
       set-monitor = pkgs.callPackage ./set-monitor.nix { inherit pkgs; };
       setup-monitors = pkgs.callPackage ./setup-monitors.nix { inherit pkgs; };
       handle-monitor = pkgs.callPackage ./handle-monitor.nix { inherit pkgs; };
-      arrange-laptop-layout = pkgs.callPackage ./arrange-laptop-layout.nix { inherit pkgs; };
       gum-scripts = pkgs.callPackage ./gum-scripts.nix {
         inherit pkgs;
         inherit (config) colorScheme;
@@ -20,7 +19,6 @@ let
           set-monitor # set monitor resolution
           setup-monitors # setup monitors based on connected displays
           handle-monitor # handle monitor resolution
-          arrange-laptop-layout # arrange zen/discord/slack on laptop screen
 
           # Gum scripts
           gum-scripts.system-cleanup # system cleanup with gum
