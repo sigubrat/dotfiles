@@ -11,6 +11,7 @@ let
         inherit (config) colorScheme;
       };
       workspace-switch = pkgs.callPackage ./workspace-switch.nix { inherit pkgs; };
+      vscode-sha-fetch = pkgs.callPackage ./vscode-sha-fetch.nix { inherit pkgs; };
     in
     {
       home.packages =
@@ -31,6 +32,9 @@ let
 
           # Workspace program switcher
           workspace-switch # switch to workspace and open program if not running
+
+          # VSCode SHA fetcher
+          vscode-sha-fetch # fetch sha256 for VSCode extensions
         ]
         ++ (pkgs.sxm.scripts or [ ]);
     };
