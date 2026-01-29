@@ -10,6 +10,7 @@ let
         inherit pkgs;
         inherit (config) colorScheme;
       };
+      workspace-switch = pkgs.callPackage ./workspace-switch.nix { inherit pkgs; };
     in
     {
       home.packages =
@@ -27,6 +28,9 @@ let
           gum-scripts.cm # git commit helper with gum
           gum-scripts.gadd # git add helper with gum
           gum-scripts.glog # git log viewer with gum
+
+          # Workspace program switcher
+          workspace-switch # switch to workspace and open program if not running
         ]
         ++ (pkgs.sxm.scripts or [ ]);
     };

@@ -24,7 +24,7 @@ pkgs.writeShellScriptBin "setup-monitors" ''
 
     hyprctl keyword monitor "desc:$MONITOR_LEFT_DESC,2560x1440@60,0x0,1"
     hyprctl keyword monitor "desc:$MONITOR_MIDDLE_DESC,2560x1440@60,2560x0,1"
-    hyprctl keyword monitor "$LAPTOP,1920x1200@60,5120x0,1"
+    hyprctl keyword monitor "$LAPTOP,1920x1080@60,5120x0,1"
 
     # Move existing workspaces first
     # Workspace 1 (Zen) goes to left monitor

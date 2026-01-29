@@ -31,6 +31,7 @@
 
       # Workspace assignments
       # Zen browser not auto-assigned - user decides which workspace
+      "workspace 1, match:class ^(zen|Zen)$"
       "workspace 2, match:class ^(code|Code)$"
       "workspace 3, match:class ^(Alacritty|alacritty)$"
       # Laptop workspaces

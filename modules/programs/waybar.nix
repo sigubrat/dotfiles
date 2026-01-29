@@ -37,7 +37,7 @@ in
     settings.mainBar = {
       position = "top";
       layer = "top";
-      height = 36;
+      height = 56;
       margin-top = 6;
       margin-bottom = 0;
       margin-left = 8;
@@ -118,6 +118,8 @@ in
           "3" = [ ];
           "4" = [ ];
           "5" = [ ];
+          "6" = [ ];
+          "7" = [ ];
         };
       };
 
