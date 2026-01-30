@@ -125,7 +125,7 @@ in
           # User greeting on primary monitor - using Subtext1
           {
             monitor = primaryMonitor;
-            text = "When the issue is labeled \"Bra for nybegynnere\" ༼ ༎ຶ ᆺ ༎ຶ༽";
+            text = "Williams F1 2026 P4 let's goooo! ༼ つ ◕_◕ ༽つ";
             color = "rgba(186, 194, 222, 0.8)"; # Subtext1
             font_size = 20;
             font_family = "RobotoMono Nerd Font";
