@@ -36,6 +36,11 @@
       exec-once = [
         "setup-monitors"
         "handle-monitor"
+        "zen"
+        "discord"
+        "code"
+        "alacritty"
+        "slack"
       ];
     };
   };
