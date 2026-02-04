@@ -91,7 +91,8 @@ in
             inner_color = "rgba(49, 50, 68, 0.8)"; # Surface0 background
             font_color = "rgba(205, 214, 244, 1.0)"; # Text color
             fade_on_empty = false;
-            placeholder_text = "hunter2";
+            placeholder_text = "Randomizing password...";
+            fail_text = "Incorrect login detected! Intruder photos being taken and owner alerted!";
             hide_input = false;
             position = "0, -100";
             halign = "center";
