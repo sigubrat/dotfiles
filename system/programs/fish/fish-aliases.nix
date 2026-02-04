@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   dc = "${pkgs.docker-compose}/bin/docker-compose";
+  nmkp-path = "~/Projects/workspace/kvalreg-nmkp";
 in
 {
   fishAliases = {
@@ -50,5 +51,11 @@ in
     doc = "cd ~/Documents";
     work = "cd ~/Projects/workspace";
     tod = "cd ~/Projects/workspace/worksetup";
+    frontend = "cd ${nmkp-path}/modules/nmkp-app-core";
+    backend = "cd ${nmkp-path}";
+
+    # Danger zone
+    nuke = "rm -rf ${nmkp-path}/project target/ ${nmkp-path}/.bloop ${nmkp-path}/.bsp ${nmkp-path}/.metals ";
+    restart_db = "echo \"Dropping database and restarting postgres\"; drop_postgres; sleep 2; start_postgres; echo \"Postgres restarted.\"";
   };
 }
