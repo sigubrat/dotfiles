@@ -8,8 +8,7 @@ jobs:
   generate_matrix:
     runs-on: ubuntu-latest
     outputs:
-      nixos_configurations:
-        ${{ steps.gen_nixos_configurations.outputs.nixos_configurations }}
+      nixos_configurations: ${{ steps.gen_nixos_configurations.outputs.nixos_configurations }}
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -22,8 +21,8 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://leifeggenfellner.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= leifeggenfellner.cachix.org-1:+eB88ym7mLK0BmusC9IXqGNOj4niilnp3EI1T7Yi6fY= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://williams.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= williams.cachix.org-1:e0ozy7U5umMtVlq/bBaD3MM0lbYJpiMqM1wFxYRUxbc= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
           install_url: https://releases.nixos.org/nix/nix-2.25.0/install
       - name: Generate flake.json
         run: |
@@ -47,18 +46,18 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://leifeggenfellner.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= leifeggenfellner.cachix.org-1:+eB88ym7mLK0BmusC9IXqGNOj4niilnp3EI1T7Yi6fY= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://williams.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= williams.cachix.org-1:e0ozy7U5umMtVlq/bBaD3MM0lbYJpiMqM1wFxYRUxbc= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
           install_url: https://releases.nixos.org/nix/nix-2.25.0/install
       - name: Set up cachix
         uses: cachix/cachix-action@master
         with:
-          name: leifeggenfellner
+          name: williams
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Set up git
         run: |
-          git config user.email "eggenfellner@protonmail.com"
-          git config user.name "leifeggenfellner"
+          git config user.email "sigurdjbratt@hotmail.no"
+          git config user.name "sigubrat"
       - name: Update the flake
         run: nix flake update
       - name: Store flake.lock
@@ -75,8 +74,7 @@ jobs:
       fail-fast: false
       max-parallel: 3
       matrix:
-        nixos_configuration:
-          ${{ fromJson(needs.generate_matrix.outputs.nixos_configurations) }}
+        nixos_configuration: ${{ fromJson(needs.generate_matrix.outputs.nixos_configurations) }}
     steps:
       - name: Free diskspace
         uses: easimon/maximize-build-space@master
@@ -120,8 +118,8 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://leifeggenfellner.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= leifeggenfellner.cachix.org-1:+eB88ym7mLK0BmusC9IXqGNOj4niilnp3EI1T7Yi6fY= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://williams.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= williams.cachix.org-1:e0ozy7U5umMtVlq/bBaD3MM0lbYJpiMqM1wFxYRUxbc= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
             max-jobs = 2
             cores = 2
             max-silent-time = 1800
@@ -129,7 +127,7 @@ jobs:
       - name: Set up cachix
         uses: cachix/cachix-action@master
         with:
-          name: leifeggenfellner
+          name: williams
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Restore flake.lock
         uses: actions/download-artifact@v4
@@ -141,7 +139,7 @@ jobs:
       - name: Push to cachix in smaller batches
         run: |
           for path in $(nix path-info --json result | jq -r '.[].path'); do
-            cachix push leifeggenfellner $path || true
+            cachix push williams $path || true
           done
 
   check_flake:
@@ -160,13 +158,13 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://leifeggenfellner.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= leifeggenfellner.cachix.org-1:+eB88ym7mLK0BmusC9IXqGNOj4niilnp3EI1T7Yi6fY= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://williams.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= williams.cachix.org-1:e0ozy7U5umMtVlq/bBaD3MM0lbYJpiMqM1wFxYRUxbc= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
           install_url: https://releases.nixos.org/nix/nix-2.25.0/install
       - name: Set up cachix
         uses: cachix/cachix-action@master
         with:
-          name: leifeggenfellner
+          name: williams
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Restore flake.lock
         uses: actions/download-artifact@v4
@@ -190,15 +188,15 @@ jobs:
           name: flake_lock
       - name: Set up git
         run: |
-          git config user.email "eggenfellner@protonmail.com"
-          git config user.name "leifeggenfellner"
+          git config user.email "sigurdjbratt@hotmail.no"
+          git config user.name "sigubrat"
       - name: Create and merge PR
         run: |
           git switch -c updates-${{ github.run_id }}
           git commit -am "flake.lock: Update"
           git push -u origin updates-${{ github.run_id }}
           PR=$(gh pr create \
-            --assignee leifeggenfellner \
+            --assignee sigubrat \
             --base main \
             --body "Automatic flake update on $(date -I)" \
             --fill \
@@ -206,4 +204,3 @@ jobs:
             )
         env:
           GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}
-

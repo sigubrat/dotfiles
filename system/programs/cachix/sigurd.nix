@@ -1,10 +1,10 @@
 {
   nix = {
     settings.substituters = [
-      "https://leifeggenfellner.cachix.org"
+      "https://williams.cachix.org"
     ];
     settings.trusted-public-keys = [
-      "leifeggenfellner.cachix.org-1:+eB88ym7mLK0BmusC9IXqGNOj4niilnp3EI1T7Yi6fY="
+      "williams.cachix.org-1:e0ozy7U5umMtVlq/bBaD3MM0lbYJpiMqM1wFxYRUxbc="
     ];
   };
 }
