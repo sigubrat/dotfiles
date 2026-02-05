@@ -28,6 +28,7 @@ in
     gaa = "git add -A";
     gm = "git commit -m";
     gp = "git push";
+    gpfl = "git push --force-with-lease";
     gc = "git checkout";
 
     # Maven alias
