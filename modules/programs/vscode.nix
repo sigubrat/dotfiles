@@ -282,7 +282,7 @@ in
             "editor.formatOnPaste" = true;
             "editor.minimap.enabled" = false;
             "editor.defaultFormatter" = "esbenp.prettier-vscode";
-            "editor.lineNumbers" = "relative";
+            "editor.lineNumbers" = "on";
             "editor.linkedEditing" = true;
             "editor.bracketPairColorization.enabled" = true;
             "editor.guides.bracketPairs" = "active";
