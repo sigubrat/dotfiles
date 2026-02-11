@@ -22,7 +22,7 @@ let
         ouch # painless compression and decompression for your terminal
         paprefs # pulseaudio preferences
         pavucontrol # pulseaudio volume control
-        pgadmin4 # Postgres administration tool
+        pgadmin4-desktopmode # Postgres administration tool
         pipewire # control volume
         playerctl # media player control
         poppler # pdf tools
