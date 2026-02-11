@@ -11,8 +11,8 @@ let
         ffmpegthumbnailer # thumbnailer for video files
         gum # glamorous shell scripts
         headsetcontrol # control logitech headsets
-        imv # image viewer
         imagemagick # image manipulation
+        imv # image viewer
         killall # kill processes by name
         libsecret # secret management
         mediainfo # media information
@@ -21,19 +21,20 @@ let
         nix-prefetch-git # prefetch git sources
         ouch # painless compression and decompression for your terminal
         paprefs # pulseaudio preferences
-        playerctl # media player control
-        pulseaudio # pulseaudio
         pavucontrol # pulseaudio volume control
-        prettyping # a nicer ping
+        pgadmin4 # Postgres administration tool
+        pipewire # control volume
+        playerctl # media player control
         poppler # pdf tools
         powertop # power stuff
-        pipewire # control volume
+        prettyping # a nicer ping
+        pulseaudio # pulseaudio
         rage # encryption tool for secrets management
         ripgrep # fast grep
+        spicetify-cli # Customize Spotify client
         statix #linting
         tldr # summary of a man page
         tree # display files in a tree view
-        spicetify-cli # Customize Spotify client
         unzip # unzip files
         xarchiver # archive manager
         zip # zip files
