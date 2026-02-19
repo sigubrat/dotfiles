@@ -27,6 +27,14 @@ let
       autoSetupRemote = true;
     };
 
+    # Always use tags from remote
+    remote = {
+      origin = {
+        tagOpt = "--tags";
+        fetch = "+refs/tags/*:refs/tags/*";
+      };
+    };
+
     # Rebase behaviour
     rebase = {
       updateRefs = true;
