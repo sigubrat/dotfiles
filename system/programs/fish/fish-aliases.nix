@@ -57,6 +57,7 @@ in
 
     # Danger zone
     nuke = "rm -rf ${nmkp-path}/project target/ ${nmkp-path}/.bloop ${nmkp-path}/.bsp ${nmkp-path}/.metals ";
+    start_background = "nmkp service start -a";
     restart_db = "echo \"Dropping database and restarting postgres\"; nmkp service drop -p; sleep 2; nmkp service start -p; echo \"Postgres restarted.\"";
   };
 }
