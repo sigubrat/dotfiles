@@ -61,6 +61,7 @@
   imports = [
     ./cachix
     ./fish
+    ./batsignal.nix
     ./docker.nix
     ./fonts.nix
     ./qemu.nix
