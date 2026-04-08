@@ -26,9 +26,6 @@
       "float on, size (monitor_w*0.5) (monitor_h*0.7), center on, match:title ^(ranger)$"
       "float on, size (monitor_w*0.5) (monitor_h*0.7), center on, match:title ^(btop)$"
 
-      # Opacity rules
-      "opacity 0.91 override 0.73 override, match:class ^(Emacs)$"
-
       # Workspace assignments
       # Zen browser not auto-assigned - user decides which workspace
       "workspace 1, match:class ^(zen|Zen)$"
