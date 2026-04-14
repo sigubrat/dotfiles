@@ -155,19 +155,19 @@ jobs:
     continue-on-error: true
     steps:
       - name: Clean up root space and mount /nix on /mnt
-          run: |
-            sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
-            sudo rm -rf /opt/hostedtoolcache /opt/microsoft
-            sudo rm -rf /usr/local/share/boost /usr/local/.ghcup
-            sudo rm -rf /usr/share/swift /usr/local/graalvm
-            sudo apt-get clean
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache /opt/microsoft
+          sudo rm -rf /usr/local/share/boost /usr/local/.ghcup
+          sudo rm -rf /usr/share/swift /usr/local/graalvm
+          sudo apt-get clean
 
-            sudo mkdir -p /nix
-            sudo mkdir -p /mnt/nix
-            sudo mount --bind /mnt/nix /nix
-            sudo chown -R runner:runner /nix
+          sudo mkdir -p /nix
+          sudo mkdir -p /mnt/nix
+          sudo mount --bind /mnt/nix /nix
+          sudo chown -R runner:runner /nix
 
-            df -h
+          df -h
 
       - name: Clone repository
         uses: actions/checkout@v4
