@@ -19,6 +19,13 @@ in
     # Deploy the default color scheme for Hyprland to source
     xdg.configFile."hypr/scheme/default.conf".source = defaultScheme;
 
+    # Ensure current.conf exists before Hyprland starts (activation runs before services)
+    home.activation.caelestiaScheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if [ ! -f "$HOME/.config/hypr/scheme/current.conf" ]; then
+        cp -L --no-preserve=mode "$HOME/.config/hypr/scheme/default.conf" "$HOME/.config/hypr/scheme/current.conf"
+      fi
+    '';
+
     # Deploy Spicetify Caelestia theme
     xdg.configFile."spicetify/Themes/caelestia/user.css".source = spicetifyTheme;
 
