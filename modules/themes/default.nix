@@ -15,12 +15,12 @@ let
           size = 9;
         };
         theme = {
-          name = "Flat-Remix-GTK-White-Dark";
-          package = pkgs.flat-remix-gtk;
+          name = "adw-gtk3-dark";
+          package = pkgs.adw-gtk3;
         };
         iconTheme = {
-          name = "Flat-Remix-Blue-Light";
-          package = pkgs.flat-remix-icon-theme;
+          name = "Papirus-Dark";
+          package = pkgs.papirus-icon-theme;
         };
         cursorTheme = {
           name = "capitaine-cursors-white";

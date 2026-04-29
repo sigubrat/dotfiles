@@ -18,7 +18,7 @@ in
     };
     fontSize = lib.mkOption {
       type = lib.types.int;
-      default = 10;
+      default = 12;
       description = "Font size for foot";
     };
   };
@@ -27,10 +27,10 @@ in
       enable = true;
       settings = {
         main = {
-          font = "FiraCode:size=${toString cfg.fontSize}";
+          font = "JetBrainsMono Nerd Font:size=${toString cfg.fontSize}";
           horizontal-letter-offset = 0;
           vertical-letter-offset = 0;
-          pad = "5x5 center";
+          pad = "12x12 center";
           selection-target = "clipboard";
         };
 
@@ -60,7 +60,7 @@ in
         };
 
         colors = {
-          alpha = 0.91;
+          alpha = 0.78;
           foreground = "${palette.base05}";
           background = "${palette.base00}";
           regular0 = "${palette.base00}"; # black
