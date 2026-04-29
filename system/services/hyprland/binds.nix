@@ -15,6 +15,17 @@ let
 in
 {
   programs.hyprland.settings = {
+    # Caelestia shell global shortcuts (launcher, sidebar, notifications, lock)
+    "$caelestia" = "exec, hyprctl dispatch global";
+    bindi = [
+      "Super, Super_L, global, caelestia:launcher"
+    ];
+    bindin = [
+      "Super, catchall, global, caelestia:launcherInterrupt"
+      "Super, mouse:272, global, caelestia:launcherInterrupt"
+      "Super, mouse:273, global, caelestia:launcherInterrupt"
+    ];
+
     # Launchers
     bind = [
       "${mainMod}, Return, exec, ${launch "alacritty"}"
@@ -26,6 +37,13 @@ in
 
       # Lockscreen
       "${mainMod} ${SECONDARY}, L, exec, ${runOnce "hyprlock"}"
+      "${mainMod} ${TERTIARY}, L, global, caelestia:lock"
+
+      # Caelestia shell panels
+      "Ctrl+Alt, Delete, global, caelestia:session"
+      "${mainMod}, N, global, caelestia:clearNotifs"
+      "${mainMod}, A, global, caelestia:sidebar"
+      "${mainMod} ${SECONDARY}, A, global, caelestia:showall"
 
       # Screenshot
       "${mainMod} ${SECONDARY}, P, exec, ${runOnce "grimblast --notify copy area"}"
