@@ -15,21 +15,15 @@ let
 in
 {
   programs.hyprland.settings = {
-    # Caelestia shell global shortcuts (launcher, sidebar, notifications, lock)
-    "$caelestia" = "exec, hyprctl dispatch global";
+    # Caelestia shell global shortcuts (launcher via Super tap)
     bindi = [
       "Super, Super_L, global, caelestia:launcher"
-    ];
-    bindin = [
-      "Super, catchall, global, caelestia:launcherInterrupt"
-      "Super, mouse:272, global, caelestia:launcherInterrupt"
-      "Super, mouse:273, global, caelestia:launcherInterrupt"
     ];
 
     # Launchers
     bind = [
       "${mainMod}, Return, exec, ${launch "alacritty"}"
-      "${mainMod}, D, exec, ${toggle "wofi --show drun"}"
+
       "${mainMod}, B, exec, ${toggle "alacritty -t btop -e btm"}"
       "${mainMod}, R, exec, ${toggle "alacritty -t ranger -e ranger"}"
       "${mainMod}, S, exec, ${launch "spotify"}"
