@@ -13,8 +13,23 @@ in
     programs.caelestia = {
       enable = true;
       systemd.enable = true;
+      systemd.environment = [
+        "CAELESTIA_WALLPAPERS_DIR=/home/sigurd/Sources/wallpapers"
+      ];
       cli.enable = true;
     };
+
+    # Persist Caelestia state and cache across reboots (impermanence)
+    home.persistence."/persist/" = {
+      directories = [
+        ".local/state/caelestia"
+        ".cache/caelestia"
+        ".config/hypr/scheme"
+      ];
+    };
+
+    # Set wallpaper directory for CLI and shell
+    home.sessionVariables.CAELESTIA_WALLPAPERS_DIR = "/home/sigurd/Sources/wallpapers";
 
     # Deploy the default color scheme for Hyprland to source
     xdg.configFile."hypr/scheme/default.conf".source = defaultScheme;
