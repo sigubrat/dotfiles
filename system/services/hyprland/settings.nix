@@ -18,13 +18,13 @@
     ];
 
     general = {
-      gaps_in = 7;
-      gaps_out = 7;
-      border_size = 2;
+      gaps_in = 5;
+      gaps_out = 10;
+      border_size = 1;
       allow_tearing = true;
       resize_on_border = true;
-      "col.active_border" = "rgb(B48EAD) rgb(89B4FA) rgb(74C7EC) 45deg"; # Magenta to blue gradient
-      "col.inactive_border" = "rgb(313244)";
+      "col.active_border" = "rgba(c2c1ffe6)"; # Caelestia primary
+      "col.inactive_border" = "rgba(c8c5d111)"; # Caelestia onSurfaceVariant faint
       # Border hover effects
       hover_icon_on_border = true;
       extend_border_grab_area = 15;
@@ -37,18 +37,23 @@
     };
 
     decoration = {
-      rounding = 16;
+      rounding = 15;
 
       blur = {
         enabled = true;
         size = 8;
-        passes = 4;
+        passes = 2;
         new_optimizations = true;
         ignore_opacity = true;
         xray = false;
-        contrast = 1.1;
-        brightness = 1.0;
-        noise = 0.02;
+        popups = true;
+      };
+
+      shadow = {
+        enabled = true;
+        range = 20;
+        render_power = 3;
+        color = "rgba(131317d4)";
       };
 
       active_opacity = 1.0;
@@ -59,42 +64,41 @@
     layerrule = [
       "blur on, match:namespace ^(wofi)$"
       "ignore_alpha 0, match:namespace ^(wofi)$"
-      "blur on, match:namespace ^(waybar)$"
-      "ignore_alpha 0, match:namespace ^(waybar)$"
+      "blur on, match:namespace ^(caelestia)$"
+      "ignore_alpha 0, match:namespace ^(caelestia)$"
       "blur on, match:namespace ^(notifications)$"
       "ignore_alpha 0, match:namespace ^(notifications)$"
     ];
 
     animations.enabled = true;
 
-    # Define beziers and animations
+    # Caelestia-style beziers and animations
     bezier = [
-      "wind, 0.05, 0.9, 0.1, 1.05"
-      "winIn, 0.1, 1.1, 0.1, 1.1"
-      "winOut, 0.3, -0.3, 0, 1"
-      "liner, 1, 1, 1, 1"
-      "overshot, 0.13, 0.99, 0.29, 1.1"
+      "specialWorkSwitch, 0.05, 0.7, 0.1, 1"
+      "emphasizedAccel, 0.3, 0, 0.8, 0.15"
+      "emphasizedDecel, 0.05, 0.7, 0.1, 1"
+      "standard, 0.2, 0, 0, 1"
     ];
 
     animation = [
-      # Window animations with custom beziers
-      "windows, 1, 6, wind, slide"
-      "windowsIn, 1, 6, winIn, slide"
-      "windowsOut, 1, 5, winOut, slide"
-      "windowsMove, 1, 5, wind, slide"
+      # Layer animations
+      "layersIn, 1, 5, emphasizedDecel, slide"
+      "layersOut, 1, 4, emphasizedAccel, slide"
+      "fadeLayers, 1, 5, standard"
 
-      # Border animations
-      "border, 1, 10, liner"
-      "borderangle, 1, 60, liner, loop" # Animated gradient rotation
+      # Window animations
+      "windowsIn, 1, 5, emphasizedDecel"
+      "windowsOut, 1, 3, emphasizedAccel"
+      "windowsMove, 1, 6, standard"
+      "workspaces, 1, 5, standard"
 
-      # Fade effects
-      "fade, 1, 10, default"
+      # Special workspace
+      "specialWorkspace, 1, 4, specialWorkSwitch, slidefadevert 15%"
 
-      # Workspace animations with overshot
-      "workspaces, 1, 6, overshot, slidevert"
-
-      # Special effects
-      "specialWorkspace, 1, 6, default, slidevert"
+      # Fade & border
+      "fade, 1, 6, standard"
+      "fadeDim, 1, 6, standard"
+      "border, 1, 6, standard"
     ];
 
     input = {
@@ -123,9 +127,9 @@
         scrolling = true;
       };
 
-      # Group border colors
-      "col.border_active" = "rgb(B48EAD)";
-      "col.border_inactive" = "rgb(313244)";
+      # Group border colors (Caelestia primary/surface)
+      "col.border_active" = "rgba(c2c1ffe6)";
+      "col.border_inactive" = "rgba(47464f66)";
     };
 
     dwindle = {
