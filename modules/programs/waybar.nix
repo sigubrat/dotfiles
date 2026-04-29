@@ -28,8 +28,9 @@ let
   system = "${pkgs.gnome-system-monitor}/bin/gnome-system-monitor";
 in
 {
+  # Disabled: replaced by Caelestia shell bar
   programs.waybar = lib.mkIf (osConfig.environment.desktop.windowManager == "hyprland") {
-    enable = true;
+    enable = false;
     package = pkgs.waybar.overrideAttrs (oa: {
       mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
     });

@@ -28,6 +28,7 @@ let
                 imports = [
                   inputs.nix-colors.homeManagerModules.default
                   inputs.sops-nix.homeManagerModules.sops
+                  inputs.caelestia-shell.homeManagerModules.default
                   profilePath
                 ];
               };
