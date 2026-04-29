@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   programs.hyprland.settings = {
+    # Source Caelestia scheme colors (written dynamically by caelestia CLI)
+    source = [
+      "~/.config/hypr/scheme/current.conf"
+    ];
+
     env = [
       "GRIMBLAST_NO_CURSOR,0"
       "HYPRCURSOR_THEME,${pkgs.capitaine-cursors}"
@@ -8,6 +13,8 @@
       "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
     ];
     exec-once = [
+      # Initialize default scheme if current.conf doesn't exist
+      "cp -L --no-preserve=mode --update=none ~/.config/hypr/scheme/default.conf ~/.config/hypr/scheme/current.conf"
       "hyprpaper"
       "hyprctl setcursor capitaine-cursors-white 16"
       "wl-clip-persist --clipboard both &"
