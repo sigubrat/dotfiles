@@ -16,8 +16,14 @@ in
 {
   programs.hyprland.settings = {
     # Caelestia shell global shortcuts (launcher, sidebar, notifications, lock)
+    "$caelestia" = "exec, hyprctl dispatch global";
     bindi = [
       "Super, Super_L, global, caelestia:launcher"
+    ];
+    bindin = [
+      "Super, catchall, global, caelestia:launcherInterrupt"
+      "Super, mouse:272, global, caelestia:launcherInterrupt"
+      "Super, mouse:273, global, caelestia:launcherInterrupt"
     ];
 
     # Launchers
