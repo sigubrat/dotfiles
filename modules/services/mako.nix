@@ -7,8 +7,9 @@ let
   fontType = "RobotoMono Nerd Font 12";
 in
 {
+  # Disabled: replaced by Caelestia shell notifications
   services.mako = lib.mkIf (osConfig.environment.desktop.windowManager == "hyprland") {
-    enable = true;
+    enable = false;
     settings = {
       icon-path = "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark";
       font = fontType;

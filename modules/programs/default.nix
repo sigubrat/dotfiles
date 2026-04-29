@@ -46,6 +46,7 @@ in
   ./alacritty.nix
   ./bat.nix
   ./broot.nix
+  ./caelestia.nix
   ./chrome.nix
   ./direnv.nix
   ./discord.nix
