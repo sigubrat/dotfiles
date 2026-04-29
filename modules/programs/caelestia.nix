@@ -17,6 +17,11 @@ in
         "CAELESTIA_WALLPAPERS_DIR=/home/sigurd/Sources/wallpapers"
       ];
       cli.enable = true;
+      settings = {
+        wallpapers = {
+          path = "/home/sigurd/Sources/wallpapers";
+        };
+      };
     };
 
     # Persist Caelestia state and cache across reboots (impermanence)
