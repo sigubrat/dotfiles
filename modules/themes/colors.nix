@@ -1,25 +1,25 @@
 _: {
   colorScheme = {
-    slug = "catppuccin-mocha";
-    name = "Catppuccin Mocha";
-    author = "Catppuccin Community";
+    slug = "caelestia";
+    name = "Caelestia";
+    author = "Caelestia Community";
     palette = {
-      base00 = "1e1e2e"; # Base background (crust/base)
-      base01 = "181825"; # Mantle
-      base02 = "313244"; # Surface0
-      base03 = "45475a"; # Surface1
-      base04 = "585b70"; # Surface2
-      base05 = "cdd6f4"; # Text (main fg)
-      base06 = "f5e0dc"; # Rosewater (bright fg alt)
-      base07 = "b4befe"; # Lavender (brightest fg alt)
-      base08 = "f38ba8"; # Red
-      base09 = "fab387"; # Peach / Orange
-      base0A = "f9e2af"; # Yellow
-      base0B = "a6e3a1"; # Green
-      base0C = "94e2d5"; # Teal / Cyan
-      base0D = "89b4fa"; # Blue
-      base0E = "cba6f7"; # Mauve / Magenta
-      base0F = "eba0ac"; # Maroon / Accent
+      base00 = "131317"; # Base background
+      base01 = "1c1b1f"; # Surface container low
+      base02 = "353438"; # Surface container highest
+      base03 = "47464f"; # Surface variant
+      base04 = "918f9a"; # Outline / subtext0
+      base05 = "e5e1e7"; # Text / onBackground
+      base06 = "c8c5d1"; # Subtext1
+      base07 = "c2c1ff"; # Primary / lavender
+      base08 = "ac73ff"; # Purple (term1)
+      base09 = "f5b2e0"; # Tertiary / pink
+      base0A = "ffecf3"; # Yellow (light pink)
+      base0B = "44def5"; # Cyan-green (term2)
+      base0C = "9dceff"; # Sky / cyan (term6)
+      base0D = "b0b8ff"; # Blue
+      base0E = "bfb8ff"; # Mauve
+      base0F = "ffdcf2"; # Accent (term3)
     };
   };
 }
