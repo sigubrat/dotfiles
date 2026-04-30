@@ -40,7 +40,7 @@ in
     bindl = ${mainMod}, N, global, caelestia:clearNotifs
     bind = ${mainMod}, A, global, caelestia:sidebar
     bind = ${mainMod} ${SECONDARY}, A, global, caelestia:showall
-    bind = ${mainMod} ${TERTIARY}, L, global, caelestia:lock
+    bind = ${mainMod} ${SECONDARY}, L, global, caelestia:lock
 
     # Launchers
     bind = ${mainMod}, Return, exec, ${launch "alacritty"}
@@ -48,9 +48,6 @@ in
     bind = ${mainMod}, R, exec, ${toggle "alacritty -t ranger -e ranger"}
     bind = ${mainMod}, S, exec, ${launch "spotify"}
     bind = ${mainMod} ${SECONDARY}, D, exec, ${runOnce "pcmanfm"}
-
-    # Lockscreen
-    bind = ${mainMod} ${SECONDARY}, L, exec, ${runOnce "hyprlock"}
 
     # Screenshot
     bind = ${mainMod} ${SECONDARY}, P, exec, ${runOnce "grimblast --notify copy area"}
