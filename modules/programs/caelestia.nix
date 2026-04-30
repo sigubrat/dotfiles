@@ -25,6 +25,9 @@ in
           useTwelveHourClock = false;
           useFahrenheit = false;
         };
+        lock = {
+          hideNotifs = true;
+        };
       };
     };
 
