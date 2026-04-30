@@ -33,6 +33,10 @@
 
         USB_AUTOSUSPEND = 1;
 
+        # Don't let TLP rfkill-block Bluetooth on boot
+        RESTORE_DEVICE_STATE_ON_STARTUP = 1;
+        DEVICES_TO_ENABLE_ON_STARTUP = "bluetooth";
+
         PCIE_ASPM_ON_AC = "default";
         PCIE_ASPM_ON_BAT = "powersupersave";
 
