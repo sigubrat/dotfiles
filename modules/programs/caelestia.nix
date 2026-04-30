@@ -21,6 +21,10 @@ in
         wallpapers = {
           path = "/home/sigurd/Sources/wallpapers";
         };
+        services = {
+          useTwelveHourClock = false;
+          useFahrenheit = false;
+        };
       };
     };
 
