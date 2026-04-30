@@ -14,13 +14,7 @@ let
   launch = program: "uwsm app -- ${program}";
 in
 {
-  programs.hyprland.settings = {
-    # Move/resize windows with mainMod + LMB/RMB and dragging
-    bindm = [
-      "${mainMod}, mouse:272, movewindow"
-      "${mainMod}, mouse:273, resizewindow"
-    ];
-  };
+  programs.hyprland.settings = { };
 
   # All keybinds must live inside submap=global so that the catchall
   # intercepts Super+<key> combos and prevents the launcher from
@@ -127,6 +121,10 @@ in
     binde = ${mainMod} ALT,  j, moveactive, 0 20
     binde = ${mainMod} ALT,  l, moveactive, 20 0
     binde = ${mainMod} ALT,  h, moveactive, -20 0
+
+    # Move/resize windows with mainMod + LMB/RMB and dragging
+    bindm = ${mainMod}, mouse:272, movewindow
+    bindm = ${mainMod}, mouse:273, resizewindow
 
     submap = reset
   '';
