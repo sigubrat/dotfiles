@@ -21,6 +21,13 @@ in
         wallpapers = {
           path = "/home/sigurd/Sources/wallpapers";
         };
+        bar.workspaces.windowIcons = [
+          { name = "zen"; icon = "web"; }
+          { name = "code"; icon = "code"; }
+          { name = "discord"; icon = "chat_bubble"; }
+          { name = "Slack"; icon = "forum"; }
+          { name = "Alacritty"; icon = "terminal"; }
+        ];
         services = {
           useTwelveHourClock = false;
           useFahrenheit = false;
@@ -47,11 +54,13 @@ in
     xdg.configFile."hypr/scheme/default.conf".source = defaultScheme;
 
     # Ensure current.conf exists before Hyprland starts (activation runs before services)
-    home.activation.caelestiaScheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if [ ! -f "$HOME/.config/hypr/scheme/current.conf" ]; then
-        cp -L --no-preserve=mode "$HOME/.config/hypr/scheme/default.conf" "$HOME/.config/hypr/scheme/current.conf"
-      fi
-    '';
+    home.activation.caelestiaScheme = lib.hm.dag.entryAfter
+      [ "writeBoundary" ]
+      ''
+        if [ ! -f "$HOME/.config/hypr/scheme/current.conf" ]; then
+          cp -L --no-preserve=mode "$HOME/.config/hypr/scheme/default.conf" "$HOME/.config/hypr/scheme/current.conf"
+        fi
+      '';
 
     # Deploy Spicetify Caelestia theme
     xdg.configFile."spicetify/Themes/caelestia/user.css".source = spicetifyTheme;
@@ -60,11 +69,12 @@ in
     xdg.configFile."caelestia/zen-userChrome.css".source = zenUserChrome;
 
     # Fish integration: apply terminal color sequences on shell init
-    programs.fish.interactiveShellInit = lib.mkAfter ''
-      # Apply Caelestia terminal colour sequences if available
-      if test -f ~/.local/state/caelestia/sequences.txt
-        cat ~/.local/state/caelestia/sequences.txt
-      end
-    '';
+    programs.fish.interactiveShellInit = lib.mkAfter
+      ''
+        # Apply Caelestia terminal colour sequences if available
+        if test -f ~/.local/state/caelestia/sequences.txt
+          cat ~/.local/state/caelestia/sequences.txt
+        end
+      '';
   };
 }
