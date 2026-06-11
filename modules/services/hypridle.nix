@@ -35,7 +35,7 @@ in
     };
     suspendTimer = lib.mkOption {
       type = lib.types.int;
-      default = 300;
+      default = 600;
       description = "Idle timeout in seconds before suspend actions.";
     };
   };
@@ -48,7 +48,7 @@ in
       settings = {
         general = {
           before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
-          after-sleep-cmd = "${hyprctl} dispatch dpms on";
+          after_sleep_cmd = "${hyprctl} dispatch dpms on";
           lock_cmd = "pgrep hyprlock || ${lib.getExe config.programs.hyprlock.package}";
           ignore_dbus_inhibit = true;
         };
