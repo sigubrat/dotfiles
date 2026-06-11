@@ -28,6 +28,11 @@ in
       default = 3600;
       description = "Idle timeout in seconds before DPMS off and suspend actions.";
     };
+    lockTimeout = lib.mkOption {
+      type = lib.types.int;
+      default = 540;
+      description = "Idle timeout in seconds before locking the session (default: 9 minutes).";
+    };
     suspend = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -55,7 +60,7 @@ in
         listener =
           [
             {
-              timeout = cfg.timeout - 60;
+              timeout = cfg.lockTimeout;
               on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
             }
           ]
