@@ -28,6 +28,15 @@ in
           { name = "Slack"; icon = "forum"; }
           { name = "Alacritty"; icon = "terminal"; }
         ];
+        general.idle = {
+          lockBeforeSleep = true;
+          inhibitWhenAudio = true;
+          timeouts = [
+            { timeout = 540; idleAction = "lock"; }
+            { timeout = 600; idleAction = "dpms off"; returnAction = "dpms on"; }
+            { timeout = 900; idleAction = [ "systemctl" "suspend-then-hibernate" ]; }
+          ];
+        };
         services = {
           useTwelveHourClock = false;
           useFahrenheit = false;
