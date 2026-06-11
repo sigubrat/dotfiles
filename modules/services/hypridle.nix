@@ -53,7 +53,13 @@ in
           ignore_dbus_inhibit = true;
         };
         listener =
-          (lib.optional cfg.dpms {
+          [
+            {
+              timeout = cfg.timeout - 60;
+              on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
+            }
+          ]
+          ++ (lib.optional cfg.dpms {
             inherit (cfg) timeout;
             on-timeout = "${hyprctl} dispatch dpms off";
             on-resume = "${hyprctl} dispatch dpms on";
