@@ -38,35 +38,39 @@ in
       };
     };
 
-    # Persist Caelestia state and cache across reboots (impermanence)
-    home.persistence."/persist/" = {
-      directories = [
-        ".local/state/caelestia"
-        ".cache/caelestia"
-        ".config/hypr/scheme"
-      ];
+    home = {
+      # Persist Caelestia state and cache across reboots (impermanence)
+      persistence."/persist/" = {
+        directories = [
+          ".local/state/caelestia"
+          ".cache/caelestia"
+          ".config/hypr/scheme"
+        ];
+      };
+
+      # Set wallpaper directory for CLI and shell
+      sessionVariables.CAELESTIA_WALLPAPERS_DIR = "/home/sigurd/Sources/wallpapers";
+
+      # Ensure current.conf exists before Hyprland starts (activation runs before services)
+      activation.caelestiaScheme = lib.hm.dag.entryAfter
+        [ "writeBoundary" ]
+        ''
+          if [ ! -f "$HOME/.config/hypr/scheme/current.conf" ]; then
+            cp -L --no-preserve=mode "$HOME/.config/hypr/scheme/default.conf" "$HOME/.config/hypr/scheme/current.conf"
+          fi
+        '';
     };
 
-    # Set wallpaper directory for CLI and shell
-    home.sessionVariables.CAELESTIA_WALLPAPERS_DIR = "/home/sigurd/Sources/wallpapers";
+    xdg.configFile = {
+      # Deploy the default color scheme for Hyprland to source
+      "hypr/scheme/default.conf".source = defaultScheme;
 
-    # Deploy the default color scheme for Hyprland to source
-    xdg.configFile."hypr/scheme/default.conf".source = defaultScheme;
+      # Deploy Spicetify Caelestia theme
+      "spicetify/Themes/caelestia/user.css".source = spicetifyTheme;
 
-    # Ensure current.conf exists before Hyprland starts (activation runs before services)
-    home.activation.caelestiaScheme = lib.hm.dag.entryAfter
-      [ "writeBoundary" ]
-      ''
-        if [ ! -f "$HOME/.config/hypr/scheme/current.conf" ]; then
-          cp -L --no-preserve=mode "$HOME/.config/hypr/scheme/default.conf" "$HOME/.config/hypr/scheme/current.conf"
-        fi
-      '';
-
-    # Deploy Spicetify Caelestia theme
-    xdg.configFile."spicetify/Themes/caelestia/user.css".source = spicetifyTheme;
-
-    # Zen userChrome.css — deploy to a known location; symlink from your Zen profile's chrome/ dir
-    xdg.configFile."caelestia/zen-userChrome.css".source = zenUserChrome;
+      # Zen userChrome.css — deploy to a known location; symlink from your Zen profile's chrome/ dir
+      "caelestia/zen-userChrome.css".source = zenUserChrome;
+    };
 
     # Fish integration: apply terminal color sequences on shell init
     programs.fish.interactiveShellInit = lib.mkAfter
