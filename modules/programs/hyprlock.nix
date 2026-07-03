@@ -104,7 +104,7 @@ in
           # Time label on primary monitor - using Mauve
           {
             monitor = primaryMonitor;
-            text = "cmd[update:1000] TZ='Europe/Oslo' echo \"<span>$(date +\"%H:%M\")</span>\"";
+            text = "cmd[update:60000] TZ='Europe/Oslo' echo \"<span>$(date +\"%H:%M\")</span>\"";
             color = "rgba(203, 166, 247, 1.0)"; # Mauve
             font_size = 120;
             font_family = "RobotoMono Nerd Font";
@@ -115,7 +115,7 @@ in
           # Date label on primary monitor - using Lavender
           {
             monitor = primaryMonitor;
-            text = "cmd[update:1000] TZ='Europe/Oslo' LC_TIME=nb_NO.UTF-8 echo -e \"$(date +\"%A, %d. %B\")\"";
+            text = "cmd[update:60000] TZ='Europe/Oslo' LC_TIME=nb_NO.UTF-8 echo -e \"$(date +\"%A, %d. %B\")\"";
             color = "rgba(180, 190, 254, 0.9)"; # Lavender
             font_size = 28;
             font_family = "RobotoMono Nerd Font";
@@ -137,7 +137,7 @@ in
           # Fallback time label on laptop screen
           {
             monitor = fallbackMonitor;
-            text = "cmd[update:1000] TZ='Europe/Oslo' echo \"<span>$(date +\"%H:%M\")</span>\"";
+            text = "cmd[update:60000] TZ='Europe/Oslo' echo \"<span>$(date +\"%H:%M\")</span>\"";
             color = "rgba(203, 166, 247, 1.0)"; # Mauve
             font_size = 80;
             font_family = "RobotoMono Nerd Font";
@@ -148,7 +148,7 @@ in
           # Fallback date label on laptop screen
           {
             monitor = fallbackMonitor;
-            text = "cmd[update:1000] TZ='Europe/Oslo' LC_TIME=nb_NO.UTF-8 echo -e \"$(date +\"%A, %d. %B\")\"";
+            text = "cmd[update:60000] TZ='Europe/Oslo' LC_TIME=nb_NO.UTF-8 echo -e \"$(date +\"%A, %d. %B\")\"";
             color = "rgba(180, 190, 254, 0.9)"; # Lavender
             font_size = 18;
             font_family = "RobotoMono Nerd Font";

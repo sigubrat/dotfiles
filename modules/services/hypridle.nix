@@ -54,7 +54,7 @@ in
         general = {
           before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
           after_sleep_cmd = "${hyprctl} dispatch dpms on";
-          lock_cmd = "pgrep hyprlock || ${lib.getExe config.programs.hyprlock.package}";
+          lock_cmd = "pgrep hyprlock || sh -c 'while ! ${lib.getExe config.programs.hyprlock.package}; do sleep 0.5; done'";
           ignore_dbus_inhibit = true;
         };
         listener =
