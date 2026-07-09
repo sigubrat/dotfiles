@@ -22,7 +22,7 @@
             name = "Sigurd-dev-shell";
             inputsFrom = [ ];
             nativeBuildInputs = with pkgs; [
-              nixpkgs-fmt
+              nixfmt
             ];
           };
 
@@ -34,7 +34,7 @@
                 statix.enable = true;
                 deadnix.enable = true;
                 nil.enable = true;
-                nixpkgs-fmt.enable = true;
+                nixfmt.enable = true;
                 shellcheck.enable = true;
                 beautysh.enable = true;
               };
@@ -96,7 +96,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:misterio77/nix-colors";
     nur.url = "github:nix-community/NUR";
-    # mugge.url = "github:HNIKT-Tjenesteutvikling-Systemutvikling/mugge";
+    mugge.url = "github:HNIKT-Tjenesteutvikling-Systemutvikling/mugge";
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -116,4 +116,3 @@
     };
   };
 }
-

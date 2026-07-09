@@ -5,6 +5,7 @@
   ./hypridle.nix
   ./hyprpaper.nix
   ./mako.nix
+  ./mugge.nix
   ./network.nix
   ./persist.nix
 ]
