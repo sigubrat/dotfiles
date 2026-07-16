@@ -2,6 +2,7 @@
 , config
 , lib
 , pkgs
+, inputs
 , ...
 }:
 let
@@ -230,6 +231,10 @@ in
                 version = "1.0.1";
                 sha256 = "sha256-dieCzNOIcZiTGu4Mv5zYlG7jLhaEsJR05qbzzzQ7RWc=";
               })
+            ]
+            ++ [
+              # Mugge chat
+              inputs.vsmugge.packages.${pkgs.stdenv.hostPlatform.system}.default
             ];
 
           userSettings = {
@@ -473,6 +478,9 @@ in
 
             # Docker
             "docker.dockerPath" = "${pkgs.docker}/bin/docker";
+
+            # Mugge chat
+            "mugge.dtachProgram" = "${pkgs.dtach}/bin/dtach";
 
             # Remote SSH
             "remote.SSH.path" = "${pkgs.openssh}/bin/ssh";
