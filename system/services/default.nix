@@ -11,7 +11,6 @@
     ./openssh.nix
     ./pipwire.nix
     ./runner.nix
-    ./scramgit.nix
     ./touchpad.nix
     ./wally.nix
   ];
