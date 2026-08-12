@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  osConfig,
-  ...
+{ config
+, lib
+, pkgs
+, osConfig
+, ...
 }:
 let
   inherit (config.colorScheme) palette;
@@ -276,67 +275,98 @@ in
       ----- KEYBINDINGS -----
       ----------------------
 
-      -- Apps / launchers
-      hl.bind(k(mainMod, "Return"),               hl.dsp.exec_cmd(launch("ghostty")))
-      hl.bind(k(mainMod, "D"),                    hl.dsp.exec_cmd("qs -c bivrost ipc call launcher toggle"))
-      hl.bind(k(mainMod, "B"),                    hl.dsp.exec_cmd(toggle("ghostty --title=btop -e btm")))
-      hl.bind(k(mainMod, "R"),                    hl.dsp.exec_cmd(toggle("ghostty --title=ranger -e ranger")))
-      hl.bind(k(mainMod, "S"),                    hl.dsp.exec_cmd(toggle("ghostty --title=spotify_player -e spotify_player")))
-      hl.bind(k(mainMod, SECONDARY, "D"),         hl.dsp.exec_cmd(runOnce("pcmanfm")))
-      hl.bind(k(mainMod, SECONDARY, "L"),         hl.dsp.exec_cmd("qs -c bivrost ipc call lock lock"))
-      hl.bind(k(mainMod, "A"),                    hl.dsp.exec_cmd("qs -c bivrost ipc call dashboard toggle"))
-      hl.bind(k(mainMod, "W"),                    hl.dsp.exec_cmd("qs -c bivrost ipc call wallpaper toggle"))
-      hl.bind(k(mainMod, "Escape"),               hl.dsp.exec_cmd("qs -c bivrost ipc call session toggle"))
-      hl.bind(k(mainMod, SECONDARY, "P"),         hl.dsp.exec_cmd(runOnce("grimblast --notify copy area")))
+      -- Caelestia shell – Super tap opens launcher, catchall interrupts it
+      hl.dispatch(hl.dsp.submap("global"))
+      hl.define_submap("global", function()
+          hl.bind("SUPER + Super_L", hl.dsp.global("caelestia:launcher"), { ignore_mods = true })
+          hl.bind("SUPER + catchall", hl.dsp.global("caelestia:launcherInterrupt"), { ignore_mods = true, non_consuming = true })
+          for _, btn in ipairs({ "mouse:272", "mouse:273", "mouse:274", "mouse:275", "mouse:276", "mouse:277", "mouse_up", "mouse_down" }) do
+              hl.bind("SUPER + " .. btn, hl.dsp.global("caelestia:launcherInterrupt"), { ignore_mods = true, non_consuming = true })
+          end
 
-      -- Special workspace
-      hl.bind(k(mainMod, SECONDARY, "T"),         hl.dsp.window.move({ workspace = "special" }))
-      hl.bind(k(mainMod, "t"),                    hl.dsp.workspace.toggle_special(""))
+          -- Caelestia shell panels
+          hl.bind("CTRL + ALT + Delete", hl.dsp.global("caelestia:session"))
+          hl.bind(k(mainMod, "N"), hl.dsp.global("caelestia:clearNotifs"), { locked = true })
+          hl.bind(k(mainMod, "A"), hl.dsp.global("caelestia:sidebar"))
+          hl.bind(k(mainMod, SECONDARY, "A"), hl.dsp.global("caelestia:showall"))
+          hl.bind(k(mainMod, SECONDARY, "L"), hl.dsp.global("caelestia:lock"))
 
-      -- Session
-      -- Terminate the login session (not the user): logind drives it
-      -- externally and stops user@UID.service only after the session closes,
-      -- avoiding the teardown deadlock that froze the next login.
-      hl.bind(k(mainMod, SECONDARY, TERTIARY, "Q"), hl.dsp.exec_cmd("loginctl terminate-session \"$(loginctl --no-legend list-sessions | awk '$6 == \"user\" { print $1; exit }')\""))
+          -- Launchers
+          hl.bind(k(mainMod, "Return"),               hl.dsp.exec_cmd(launch("alacritty")))
+          hl.bind(k(mainMod, "B"),                    hl.dsp.exec_cmd(toggle("alacritty -t btop -e btm")))
+          hl.bind(k(mainMod, "R"),                    hl.dsp.exec_cmd(toggle("alacritty -t ranger -e ranger")))
+          hl.bind(k(mainMod, "S"),                    hl.dsp.exec_cmd(launch("spotify")))
+          hl.bind(k(mainMod, SECONDARY, "D"),         hl.dsp.exec_cmd(runOnce("pcmanfm")))
 
-      -- Window
-      hl.bind(k(mainMod, "Q"),                    hl.dsp.window.close())
-      hl.bind(k(mainMod, "F"),                    hl.dsp.window.float({ action = "toggle" }))
-      hl.bind(k(mainMod, "G"),                    hl.dsp.window.fullscreen({ action = "toggle" }))
+          -- Screenshot
+          hl.bind(k(mainMod, SECONDARY, "P"),         hl.dsp.exec_cmd(runOnce("grimblast --notify copy area")))
 
-      -- Focus
-      hl.bind(k(mainMod, "k"),                    hl.dsp.focus({ direction = "u" }))
-      hl.bind(k(mainMod, "j"),                    hl.dsp.focus({ direction = "d" }))
-      hl.bind(k(mainMod, "l"),                    hl.dsp.focus({ direction = "r" }))
-      hl.bind(k(mainMod, "h"),                    hl.dsp.focus({ direction = "l" }))
+          -- Special workspace
+          hl.bind(k(mainMod, SECONDARY, "T"),         hl.dsp.window.move({ workspace = "special" }))
+          hl.bind(k(mainMod, "t"),                    hl.dsp.workspace.toggle_special(""))
 
-      -- Swap windows
-      hl.bind(k(mainMod, "ALT", "k"),             hl.dsp.window.swap({ direction = "u" }))
-      hl.bind(k(mainMod, "ALT", "j"),             hl.dsp.window.swap({ direction = "d" }))
-      hl.bind(k(mainMod, "ALT", "l"),             hl.dsp.window.swap({ direction = "r" }))
-      hl.bind(k(mainMod, "ALT", "h"),             hl.dsp.window.swap({ direction = "l" }))
+          -- Session
+          hl.bind(k(mainMod, SECONDARY, TERTIARY, "Q"), hl.dsp.exit())
 
-      -- Workspace navigation
-      hl.bind(k(mainMod, "left"),                 hl.dsp.focus({ workspace = "e-1" }))
-      hl.bind(k(mainMod, "right"),                hl.dsp.focus({ workspace = "e+1" }))
-      hl.bind(k(mainMod, SECONDARY, "left"),      hl.dsp.window.move({ workspace = "e-1" }))
-      hl.bind(k(mainMod, SECONDARY, "right"),     hl.dsp.window.move({ workspace = "e+1" }))
+          -- Window
+          hl.bind(k(mainMod, "Q"),                    hl.dsp.window.close())
+          hl.bind(k(mainMod, "F"),                    hl.dsp.window.float({ action = "toggle" }))
+          hl.bind(k(mainMod, "G"),                    hl.dsp.window.fullscreen({ action = "toggle" }))
+          hl.bind(k(mainMod, "P"),                    hl.dsp.layout("togglesplit"))
 
-      -- Numbered workspaces 1..9
-      for i = 1, 9 do
-          hl.bind(k(mainMod, tostring(i)),            hl.dsp.focus({ workspace = tostring(i) }))
-          hl.bind(k(mainMod, SECONDARY, tostring(i)), hl.dsp.window.move({ workspace = tostring(i) }))
-      end
+          -- Focus
+          hl.bind(k(mainMod, "k"),                    hl.dsp.focus({ direction = "u" }))
+          hl.bind(k(mainMod, "j"),                    hl.dsp.focus({ direction = "d" }))
+          hl.bind(k(mainMod, "l"),                    hl.dsp.focus({ direction = "r" }))
+          hl.bind(k(mainMod, "h"),                    hl.dsp.focus({ direction = "l" }))
 
-      -- Resize (repeatable)
-      hl.bind(k(mainMod, TERTIARY, "k"), hl.dsp.window.resize({ x = 0,   y = -20, relative = true }), { repeating = true })
-      hl.bind(k(mainMod, TERTIARY, "j"), hl.dsp.window.resize({ x = 0,   y = 20,  relative = true }), { repeating = true })
-      hl.bind(k(mainMod, TERTIARY, "l"), hl.dsp.window.resize({ x = 20,  y = 0,   relative = true }), { repeating = true })
-      hl.bind(k(mainMod, TERTIARY, "h"), hl.dsp.window.resize({ x = -20, y = 0,   relative = true }), { repeating = true })
+          -- Workspace navigation
+          hl.bind(k(mainMod, "left"),                 hl.dsp.focus({ workspace = "e-1" }))
+          hl.bind(k(mainMod, "right"),                hl.dsp.focus({ workspace = "e+1" }))
+          hl.bind(k(mainMod, SECONDARY, "left"),      hl.dsp.window.move({ workspace = "e-1" }))
+          hl.bind(k(mainMod, SECONDARY, "right"),     hl.dsp.window.move({ workspace = "e+1" }))
 
-      -- Mouse binds
-      hl.bind(k(mainMod, "mouse:272"), hl.dsp.window.drag(),   { mouse = true })
-      hl.bind(k(mainMod, "mouse:273"), hl.dsp.window.resize(), { mouse = true })
+          -- Numbered workspaces: 1-6 use workspace-switch, 7-9 use native focus
+          for i = 1, 6 do
+              hl.bind(k(mainMod, tostring(i)),            hl.dsp.exec_cmd("workspace-switch " .. tostring(i)))
+          end
+          for i = 7, 9 do
+              hl.bind(k(mainMod, tostring(i)),            hl.dsp.focus({ workspace = tostring(i) }))
+          end
+          for i = 1, 9 do
+              hl.bind(k(mainMod, SECONDARY, tostring(i)), hl.dsp.window.move({ workspace = tostring(i) }))
+          end
+
+          -- Volume keys
+          hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
+          hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
+          hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+
+          -- Media keys
+          hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+          hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),       { locked = true })
+          hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+
+          -- Brightness keys
+          hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set +10%"), { repeating = true })
+          hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 10%-"), { repeating = true })
+
+          -- Resize (repeatable)
+          hl.bind(k(mainMod, TERTIARY, "k"), hl.dsp.window.resize({ x = 0,   y = -20, relative = true }), { repeating = true })
+          hl.bind(k(mainMod, TERTIARY, "j"), hl.dsp.window.resize({ x = 0,   y = 20,  relative = true }), { repeating = true })
+          hl.bind(k(mainMod, TERTIARY, "l"), hl.dsp.window.resize({ x = 20,  y = 0,   relative = true }), { repeating = true })
+          hl.bind(k(mainMod, TERTIARY, "h"), hl.dsp.window.resize({ x = -20, y = 0,   relative = true }), { repeating = true })
+
+          -- Move floating windows
+          hl.bind(k(mainMod, "ALT", "k"), hl.dsp.window.move({ x = 0,   y = -20, relative = true }), { repeating = true })
+          hl.bind(k(mainMod, "ALT", "j"), hl.dsp.window.move({ x = 0,   y = 20,  relative = true }), { repeating = true })
+          hl.bind(k(mainMod, "ALT", "l"), hl.dsp.window.move({ x = 20,  y = 0,   relative = true }), { repeating = true })
+          hl.bind(k(mainMod, "ALT", "h"), hl.dsp.window.move({ x = -20, y = 0,   relative = true }), { repeating = true })
+
+          -- Mouse binds
+          hl.bind(k(mainMod, "mouse:272"), hl.dsp.window.drag(),   { mouse = true })
+          hl.bind(k(mainMod, "mouse:273"), hl.dsp.window.resize(), { mouse = true })
+      end)
 
       ----------------------
       ---- WINDOW RULES ----
@@ -391,7 +421,7 @@ in
       for _, r in ipairs({
           { match = { class = "^(zen)$" },                   workspace = "1" },
           { match = { class = "^(Emacs)$" },                 workspace = "2" },
-          { match = { class = "^(com.mitchellh.ghostty)$" }, workspace = "3" },
+          { match = { class = "^(Alacritty)$" },            workspace = "3" },
           { match = { class = "^(Wfica)$" },                 workspace = "5" },
           { match = { class = "^(.virt-manager-wrapped)$" }, workspace = "5" },
           { match = { class = "^(qemu)$" },                  workspace = "5" },

@@ -4,7 +4,7 @@ pkgs.writeShellScriptBin "workspace-switch" ''
   WORKSPACE=$1
 
   # Switch to the workspace first
-  hyprctl dispatch workspace "$WORKSPACE"
+  hyprctl eval "hl.dispatch(hl.dsp.focus({ workspace = \"$WORKSPACE\" }))"
 
   # Define workspace-to-app mappings
   case "$WORKSPACE" in
