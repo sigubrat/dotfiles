@@ -1,10 +1,10 @@
 {
   imports = [
-    ./hyprland
     ./blueman.nix
     ./btrbk.nix
     ./gnome.nix
     ./greetd.nix
+    ./hyprland.nix
     ./impermanence.nix
     ./nfc.nix
     ./openssh.nix
