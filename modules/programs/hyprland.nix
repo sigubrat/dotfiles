@@ -196,8 +196,7 @@ in
           },
 
           input = {
-              kb_layout  = "us,no",
-              kb_options = "grp:alt_shift_toggle",
+              kb_layout  = "no",
           },
 
           master = {
@@ -275,14 +274,9 @@ in
       ----- KEYBINDINGS -----
       ----------------------
 
-      -- Caelestia shell – Super tap opens launcher, catchall interrupts it
-      hl.dispatch(hl.dsp.submap("global"))
       hl.define_submap("global", function()
-          hl.bind("SUPER + Super_L", hl.dsp.global("caelestia:launcher"), { ignore_mods = true })
-          hl.bind("SUPER + catchall", hl.dsp.global("caelestia:launcherInterrupt"), { ignore_mods = true, non_consuming = true })
-          for _, btn in ipairs({ "mouse:272", "mouse:273", "mouse:274", "mouse:275", "mouse:276", "mouse:277", "mouse_up", "mouse_down" }) do
-              hl.bind("SUPER + " .. btn, hl.dsp.global("caelestia:launcherInterrupt"), { ignore_mods = true, non_consuming = true })
-          end
+          -- Caelestia shell panels
+          hl.bind(k(mainMod, "D"), hl.dsp.global("caelestia:launcher"))
 
           -- Caelestia shell panels
           hl.bind("CTRL + ALT + Delete", hl.dsp.global("caelestia:session"))
@@ -367,6 +361,8 @@ in
           hl.bind(k(mainMod, "mouse:272"), hl.dsp.window.drag(),   { mouse = true })
           hl.bind(k(mainMod, "mouse:273"), hl.dsp.window.resize(), { mouse = true })
       end)
+
+      hl.dispatch(hl.dsp.submap("global"))
 
       ----------------------
       ---- WINDOW RULES ----
