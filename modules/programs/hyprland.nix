@@ -129,6 +129,7 @@ in
       -------------------
 
       hl.on("hyprland.start", function()
+          hl.exec_cmd("setup-monitors")
           hl.exec_cmd("hyprpaper")
           hl.exec_cmd("hyprctl setcursor capitaine-cursors-white 16")
           hl.exec_cmd("wl-clip-persist --clipboard both &")
