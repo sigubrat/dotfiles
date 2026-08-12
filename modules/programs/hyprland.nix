@@ -137,8 +137,8 @@ in
 
           hl.exec_cmd("uwsm app -- zen",                  { workspace = "1" })
           hl.exec_cmd("uwsm app -- emacsclient -c -n",    { workspace = "2" })
-          hl.exec_cmd("uwsm app -- slack",                { workspace = "8" })
-          hl.exec_cmd("uwsm app -- discord",              { workspace = "9" })
+          hl.exec_cmd("uwsm app -- discord",              { workspace = "4" })
+          hl.exec_cmd("uwsm app -- slack",                { workspace = "5" })
       end)
 
       -------------------------
@@ -377,6 +377,9 @@ in
           "Rofi",
           "eww",
           "Gimp-2.10",
+          "org.gnome.Calculator",
+          "org.gnome.Calendar",
+          "gnome-system-monitor",
           "pavucontrol",
           "nm-connection-editor",
           "Color Picker",
@@ -395,7 +398,6 @@ in
       -- Floating + centered: by title
       for _, t in ipairs({
           "Spotify Premium",
-          "Proton Pass",
           "Spotify",
           "spotify_player",
           "ranger",
@@ -419,16 +421,13 @@ in
       end
 
       for _, r in ipairs({
-          { match = { class = "^(zen)$" },                   workspace = "1" },
-          { match = { class = "^(Emacs)$" },                 workspace = "2" },
-          { match = { class = "^(Alacritty)$" },            workspace = "3" },
-          { match = { class = "^(Wfica)$" },                 workspace = "5" },
-          { match = { class = "^(.virt-manager-wrapped)$" }, workspace = "5" },
-          { match = { class = "^(qemu)$" },                  workspace = "5" },
-          { match = { class = "^(steam)$" },                 workspace = "7" },
-          { match = { title = "^(Friends List)$" },          workspace = "7" },
-          { match = { class = "^(Slack)$" },                 workspace = "8" },
-          { match = { class = "^(discord)$" },               workspace = "9" },
+          { match = { class = "^(zen|Zen)$" },                workspace = "1" },
+          { match = { class = "^(code|Code)$" },              workspace = "2" },
+          { match = { class = "^(Alacritty|alacritty)$" },    workspace = "3" },
+          { match = { class = "^(discord)$" },                workspace = "4" },
+          { match = { class = "^(Slack)$" },                  workspace = "5" },
+          { match = { class = "^(spotify)$" },                workspace = "6" },
+          { match = { class = "^(btop|htop|nvtop|MissionCenter)$" }, workspace = "7" },
       }) do
           hl.window_rule(r)
       end
