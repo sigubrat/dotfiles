@@ -137,7 +137,8 @@ in
           hl.exec_cmd("uwsm finalize")
 
           hl.exec_cmd("uwsm app -- zen",                  { workspace = "1" })
-          hl.exec_cmd("uwsm app -- emacsclient -c -n",    { workspace = "2" })
+          hl.exec_cmd("uwsm app -- code",                 { workspace = "2" })
+          hl.exec_cmd("uwsm app -- alacritty",            { workspace = "3" })
           hl.exec_cmd("uwsm app -- discord",              { workspace = "4" })
           hl.exec_cmd("uwsm app -- slack",                { workspace = "5" })
       end)
@@ -402,12 +403,6 @@ in
       }) do
           centeredFloat({ title = "^(" .. t .. ")$" })
       end
-
-      -- Per-app opacity
-      hl.window_rule({
-          match   = { class = "^(Emacs)$" },
-          opacity = "0.91 override 0.73 override",
-      })
 
       -- Force full opacity (no transparency) on these apps
       for _, cls in ipairs({ "^(zen)$", "^(Slack)$", "^(discord)$" }) do
