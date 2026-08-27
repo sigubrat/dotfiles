@@ -1002,11 +1002,11 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix"
       },
       "locked": {
-        "lastModified": 1786125434,
-        "narHash": "sha256-Vdrz7gcAZwvVvf67gZXuRxaAVMx0zIQygqratC0NHPk=",
+        "lastModified": 1787155245,
+        "narHash": "sha256-U4uuOILTbGOmPWtGDJSYzH7dxI3sJZXp0iILT14A2hE=",
         "owner": "HNIKT-Tjenesteutvikling-Systemutvikling",
         "repo": "mugge",
-        "rev": "7477fb0c18b357740f0d3ae81c5ba3030c2a2b9f",
+        "rev": "c0676b3c43f407d5616bf6f417fe7ad65304c565",
         "type": "github"
       },
       "original": {
@@ -1434,11 +1434,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786439206,
-        "narHash": "sha256-yLJw7Uta932KF5O3g+2g7HdeNJlbLewGYlwsnimPYw4=",
+        "lastModified": 1787222503,
+        "narHash": "sha256-gARDGu7UEnuJi00Xyd05d7PQvHHm08T0V3ELyx1FfeU=",
         "owner": "gako358",
         "repo": "vsmugge",
-        "rev": "f5c3d3422aba9287a19389dc6d9fdcd5e52591d5",
+        "rev": "ce33a99444c655b1b3f765dcfe8141f98846d84a",
         "type": "github"
       },
       "original": {

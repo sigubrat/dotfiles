@@ -365,6 +365,9 @@ in
             "typescript.referencesCodeLens.enabled" = true;
             "typescript.referencesCodeLens.showOnAllFunctions" = true;
 
+            # Copilot configuration
+            "chat.subagents.allowInvocationsFromSubagents" = true;
+
             # File type associations
             "files.associations" = {
               "*.kt" = "gradle-kotlin-dsl";
