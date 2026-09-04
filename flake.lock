@@ -1434,11 +1434,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787222503,
-        "narHash": "sha256-gARDGu7UEnuJi00Xyd05d7PQvHHm08T0V3ELyx1FfeU=",
+        "lastModified": 1788520021,
+        "narHash": "sha256-JqVl1IWlRfjlaE5NSZ11iBJ9x869dprSEPtLauKcXRo=",
         "owner": "gako358",
         "repo": "vsmugge",
-        "rev": "ce33a99444c655b1b3f765dcfe8141f98846d84a",
+        "rev": "c6a1dd120e10aff0455d4fd70e4b03bca968fc2b",
         "type": "github"
       },
       "original": {
