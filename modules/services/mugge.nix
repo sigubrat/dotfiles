@@ -1,6 +1,7 @@
-{ pkgs
-, inputs
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 }:
 let
   muggePkgs = inputs.mugge.packages.${pkgs.stdenv.hostPlatform.system};

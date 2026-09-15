@@ -1,5 +1,6 @@
 let
-  scripts = { pkgs, config, ... }:
+  scripts =
+    { pkgs, config, ... }:
     let
       countdown-timer = pkgs.callPackage ./countdown-timer.nix { inherit pkgs; };
       gen-ssh-key = pkgs.callPackage ./gen-ssh-key.nix { inherit pkgs; };
@@ -14,29 +15,28 @@ let
       vscode-sha-fetch = pkgs.callPackage ./vscode-sha-fetch.nix { inherit pkgs; };
     in
     {
-      home.packages =
-        [
-          countdown-timer # countdown timer with figlet
-          gen-ssh-key # generate ssh key and add it to the system
-          set-monitor # set monitor resolution
-          setup-monitors # setup monitors based on connected displays
-          handle-monitor # handle monitor resolution
+      home.packages = [
+        countdown-timer # countdown timer with figlet
+        gen-ssh-key # generate ssh key and add it to the system
+        set-monitor # set monitor resolution
+        setup-monitors # setup monitors based on connected displays
+        handle-monitor # handle monitor resolution
 
-          # Gum scripts
-          gum-scripts.system-cleanup # system cleanup with gum
-          gum-scripts.project-launcher # project launcher with gum
-          gum-scripts.gswitch # git branch switcher with gum
-          gum-scripts.cm # git commit helper with gum
-          gum-scripts.gadd # git add helper with gum
-          gum-scripts.glog # git log viewer with gum
+        # Gum scripts
+        gum-scripts.system-cleanup # system cleanup with gum
+        gum-scripts.project-launcher # project launcher with gum
+        gum-scripts.gswitch # git branch switcher with gum
+        gum-scripts.cm # git commit helper with gum
+        gum-scripts.gadd # git add helper with gum
+        gum-scripts.glog # git log viewer with gum
 
-          # Workspace program switcher
-          workspace-switch # switch to workspace and open program if not running
+        # Workspace program switcher
+        workspace-switch # switch to workspace and open program if not running
 
-          # VSCode SHA fetcher
-          vscode-sha-fetch # fetch sha256 for VSCode extensions
-        ]
-        ++ (pkgs.sxm.scripts or [ ]);
+        # VSCode SHA fetcher
+        vscode-sha-fetch # fetch sha256 for VSCode extensions
+      ]
+      ++ (pkgs.sxm.scripts or [ ]);
     };
 in
 [ scripts ]

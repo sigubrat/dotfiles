@@ -1,6 +1,7 @@
-{ osConfig
-, lib
-, ...
+{
+  osConfig,
+  lib,
+  ...
 }:
 let
   # Default scheme shipped within the dotfiles repo
@@ -22,19 +23,47 @@ in
           path = "/home/sigurd/Sources/wallpapers";
         };
         bar.workspaces.windowIcons = [
-          { name = "zen"; icon = "web"; }
-          { name = "code"; icon = "code"; }
-          { name = "discord"; icon = "chat_bubble"; }
-          { name = "Slack"; icon = "forum"; }
-          { name = "Alacritty"; icon = "terminal"; }
+          {
+            name = "zen";
+            icon = "web";
+          }
+          {
+            name = "code";
+            icon = "code";
+          }
+          {
+            name = "discord";
+            icon = "chat_bubble";
+          }
+          {
+            name = "Slack";
+            icon = "forum";
+          }
+          {
+            name = "Alacritty";
+            icon = "terminal";
+          }
         ];
         general.idle = {
           lockBeforeSleep = true;
           inhibitWhenAudio = true;
           timeouts = [
-            { timeout = 540; idleAction = "lock"; }
-            { timeout = 600; idleAction = "dpms off"; returnAction = "dpms on"; }
-            { timeout = 900; idleAction = [ "systemctl" "suspend-then-hibernate" ]; }
+            {
+              timeout = 540;
+              idleAction = "lock";
+            }
+            {
+              timeout = 600;
+              idleAction = "dpms off";
+              returnAction = "dpms on";
+            }
+            {
+              timeout = 900;
+              idleAction = [
+                "systemctl"
+                "suspend-then-hibernate"
+              ];
+            }
           ];
         };
         services = {
@@ -61,13 +90,11 @@ in
       sessionVariables.CAELESTIA_WALLPAPERS_DIR = "/home/sigurd/Sources/wallpapers";
 
       # Ensure current.conf exists before Hyprland starts (activation runs before services)
-      activation.caelestiaScheme = lib.hm.dag.entryAfter
-        [ "writeBoundary" ]
-        ''
-          if [ ! -f "$HOME/.config/hypr/scheme/current.conf" ]; then
-            cp -L --no-preserve=mode "$HOME/.config/hypr/scheme/default.conf" "$HOME/.config/hypr/scheme/current.conf"
-          fi
-        '';
+      activation.caelestiaScheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        if [ ! -f "$HOME/.config/hypr/scheme/current.conf" ]; then
+          cp -L --no-preserve=mode "$HOME/.config/hypr/scheme/default.conf" "$HOME/.config/hypr/scheme/current.conf"
+        fi
+      '';
     };
 
     xdg.configFile = {
@@ -82,12 +109,11 @@ in
     };
 
     # Fish integration: apply terminal color sequences on shell init
-    programs.fish.interactiveShellInit = lib.mkAfter
-      ''
-        # Apply Caelestia terminal colour sequences if available
-        if test -f ~/.local/state/caelestia/sequences.txt
-          cat ~/.local/state/caelestia/sequences.txt
-        end
-      '';
+    programs.fish.interactiveShellInit = lib.mkAfter ''
+      # Apply Caelestia terminal colour sequences if available
+      if test -f ~/.local/state/caelestia/sequences.txt
+        cat ~/.local/state/caelestia/sequences.txt
+      end
+    '';
   };
 }

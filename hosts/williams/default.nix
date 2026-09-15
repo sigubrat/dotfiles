@@ -10,7 +10,12 @@
   users.users.sigurd = {
     isNormalUser = true;
     initialHashedPassword = "$7$CU..../....xCwA2EkHz5ukX5QDlZHqH1$0mtiQIaAoZhsAzzqoVnGXl96.U9h8G/RQplqbUB.RxD";
-    extraGroups = [ "wheel" "video" "audio" "plugdev" ];
+    extraGroups = [
+      "wheel"
+      "video"
+      "audio"
+      "plugdev"
+    ];
     openssh.authorizedKeys.keys = [ ];
   };
 
@@ -44,7 +49,6 @@
       ];
     };
   };
-
 
   system = {
     disks.extraStoreDisk.enable = false;

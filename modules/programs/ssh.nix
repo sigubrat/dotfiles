@@ -3,34 +3,40 @@
     enable = true;
 
     enableDefaultConfig = false;
-    matchBlocks."*" = {
-      forwardAgent = false;
-      addKeysToAgent = "yes";
-      compression = true;
-      serverAliveInterval = 0;
-      serverAliveCountMax = 3;
-      hashKnownHosts = false;
-      userKnownHostsFile = "~/.ssh/known_hosts";
-    };
+    settings = {
+      "*" = {
+        before = [ ];
+        after = [ ];
+        data = {
+          ForwardAgent = false;
+          AddKeysToAgent = "yes";
+          Compression = true;
+          ServerAliveInterval = 0;
+          ServerAliveCountMax = 3;
+          HashKnownHosts = false;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+        };
+      };
 
-    matchBlocks = {
       "github.com" = {
-        # "Using SSH over the HTTPS port for GitHub"
-        # "(port 22 is banned by some proxies / firewalls)"
-        hostname = "ssh.github.com";
-        port = 443;
-        user = "git";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/id_rsa";
-        controlMaster = "auto";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "10m";
+        before = [ ];
+        after = [ ];
+        data = {
+          HostName = "ssh.github.com";
+          Port = 443;
+          User = "git";
+          IdentitiesOnly = true;
+          IdentityFile = [ "~/.ssh/id_rsa" ];
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "10m";
+        };
       };
 
       "10.0.0.*" = {
-        # "allow to securely use local SSH agent to authenticate on the remote machine."
-        # "It has the same effect as adding cli option `ssh -A user@host`"
-        forwardAgent = true;
+        before = [ ];
+        after = [ ];
+        data.ForwardAgent = true;
       };
     };
   };

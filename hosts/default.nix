@@ -45,15 +45,13 @@ let
       hostNames = lib.attrNames hostDirs;
     in
     lib.listToAttrs (
-      lib.map
-        (hostName: {
-          name = hostName;
-          value = mkNixosSystem {
-            inherit hostName;
-            profilePath = "${self}/modules/profiles/${hostName}";
-          };
-        })
-        hostNames
+      lib.map (hostName: {
+        name = hostName;
+        value = mkNixosSystem {
+          inherit hostName;
+          profilePath = "${self}/modules/profiles/${hostName}";
+        };
+      }) hostNames
     );
 in
 {

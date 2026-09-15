@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 let
   gitConfig = {
@@ -56,7 +57,7 @@ let
     # URL rewrites
     url = {
       "https://github.com/".insteadOf = "gh:";
-      "ssh://git@github.com". pushInsteadOf = "gh:";
+      "ssh://git@github.com".pushInsteadOf = "gh:";
     };
 
     # GitHub helper
@@ -104,7 +105,7 @@ let
   };
 in
 {
-  home. packages = with pkgs; [
+  home.packages = with pkgs; [
     diff-so-fancy
     git-crypt
     hub

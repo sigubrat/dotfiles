@@ -12,7 +12,7 @@
           implementation = "broker";
           packages = [
             pkgs.gnome-keyring
-            pkgs.gcr
+            pkgs.gcr_4
           ];
         };
         gnome = {

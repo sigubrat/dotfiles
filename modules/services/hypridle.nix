@@ -1,9 +1,10 @@
-{ lib
-, pkgs
-, config
-, osConfig
-, inputs
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  osConfig,
+  inputs,
+  ...
 }:
 let
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
@@ -57,22 +58,21 @@ in
           lock_cmd = "pgrep hyprlock || sh -c 'while ! ${lib.getExe config.programs.hyprlock.package}; do sleep 0.5; done'";
           ignore_dbus_inhibit = true;
         };
-        listener =
-          [
-            {
-              timeout = cfg.lockTimeout;
-              on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
-            }
-          ]
-          ++ (lib.optional cfg.dpms {
-            inherit (cfg) timeout;
-            on-timeout = "${hyprctl} dispatch dpms off";
-            on-resume = "${hyprctl} dispatch dpms on";
-          })
-          ++ (lib.optional cfg.suspend {
-            timeout = cfg.timeout + cfg.suspendTimer;
-            on-timeout = "${lock}";
-          });
+        listener = [
+          {
+            timeout = cfg.lockTimeout;
+            on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
+          }
+        ]
+        ++ (lib.optional cfg.dpms {
+          inherit (cfg) timeout;
+          on-timeout = "${hyprctl} dispatch dpms off";
+          on-resume = "${hyprctl} dispatch dpms on";
+        })
+        ++ (lib.optional cfg.suspend {
+          timeout = cfg.timeout + cfg.suspendTimer;
+          on-timeout = "${lock}";
+        });
       };
     };
   };

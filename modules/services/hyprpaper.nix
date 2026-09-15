@@ -1,9 +1,10 @@
-{ lib
-, pkgs
-, inputs
-, config
-, osConfig
-, ...
+{
+  lib,
+  pkgs,
+  inputs,
+  config,
+  osConfig,
+  ...
 }:
 let
   wallpaper = "${config.home.homeDirectory}/Sources/wallpapers/cyberpunkcity.jpg";

@@ -1,8 +1,9 @@
-{ lib
-, pkgs
-, config
-, osConfig
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  osConfig,
+  ...
 }:
 let
   fontSize = "14px";
@@ -144,7 +145,11 @@ in
         format = "{icon} {volume}%";
         format-muted = "󰝟 {volume}%";
         format-icons = {
-          default = [ "󰕿" "󰖀" "󰕾" ];
+          default = [
+            "󰕿"
+            "󰖀"
+            "󰕾"
+          ];
         };
         scroll-step = 5;
         on-click = "pavucontrol";

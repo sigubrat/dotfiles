@@ -32,7 +32,7 @@ let
         rage # encryption tool for secrets management
         ripgrep # fast grep
         spicetify-cli # Customize Spotify client
-        statix #linting
+        statix # linting
         tldr # summary of a man page
         tree # display files in a tree view
         unzip # unzip files
