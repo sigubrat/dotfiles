@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
   config = lib.mkMerge [
@@ -19,7 +20,10 @@
           evolution-data-server.enable = true;
           glib-networking.enable = true;
           gnome-keyring.enable = true;
-          gcr-ssh-agent.enable = true;
+          gcr-ssh-agent = {
+            enable = true;
+            package = pkgs.gcr_4;
+          };
           gnome-online-accounts.enable = true;
         };
       };
