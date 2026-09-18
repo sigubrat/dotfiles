@@ -1,10 +1,9 @@
-{
-  osConfig,
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+{ osConfig
+, config
+, lib
+, pkgs
+, inputs
+, ...
 }:
 let
   inherit (osConfig.environment) desktop;
@@ -230,6 +229,12 @@ in
               publisher = "mikestead";
               version = "1.0.1";
               sha256 = "sha256-dieCzNOIcZiTGu4Mv5zYlG7jLhaEsJR05qbzzzQ7RWc=";
+            })
+            (pkgs.vscode-utils.extensionFromVscodeMarketplace {
+              name = "eca";
+              publisher = "editor-code-assistant";
+              version = "0.54.4";
+              sha256 = "sha256-8PBP7tpZHlJrDR1Uv3Rxr9yHlhCPgAaFB8YUxEtGQ7s=";
             })
           ]
           ++ [
