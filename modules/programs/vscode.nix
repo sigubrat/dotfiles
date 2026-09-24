@@ -1,10 +1,9 @@
-{
-  osConfig,
-  config,
-  lib,
-  pkgs,
-  inputs,
-  ...
+{ osConfig
+, config
+, lib
+, pkgs
+, inputs
+, ...
 }:
 let
   inherit (osConfig.environment) desktop;
@@ -35,6 +34,7 @@ let
 
     # Utilities
     jq
+    claude-code
 
     # Tools needed for aliases
     bat
@@ -115,6 +115,7 @@ in
             ms-vscode.makefile-tools
             mkhl.direnv
             bmalehorn.vscode-fish
+            anthropic.claude-code
 
             # Git extensions
             eamodio.gitlens
