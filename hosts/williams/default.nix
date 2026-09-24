@@ -27,29 +27,6 @@
     windowManager = "hyprland";
   };
 
-  programs.hyprland = {
-    enable = true;
-    settings = {
-      monitor = [
-        # Laptop display - safe default, will be reconfigured by scripts
-        "eDP-1,preferred,auto,1"
-
-        # External monitors - disabled by default, enabled by scripts if detected
-        ",preferred,auto,1"
-      ];
-
-      exec-once = [
-        "setup-monitors"
-        "handle-monitor"
-        "zen"
-        "discord"
-        "code"
-        "alacritty"
-        "slack"
-      ];
-    };
-  };
-
   system = {
     disks.extraStoreDisk.enable = false;
     bluetooth.enable = true;
