@@ -8,7 +8,6 @@
   users.groups.nix-access-tokens = { };
   nix = {
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
       experimental-features = [
         "nix-command"
@@ -23,6 +22,7 @@
         "@wheel"
       ];
       download-buffer-size = 524288000;
+      nix-path = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     };
     optimise = {
       automatic = true;
