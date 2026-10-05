@@ -38,6 +38,20 @@ let
     echo "[cleanup] Creating new subvolume /btrfs_tmp/root"
     btrfs subvolume create /btrfs_tmp/root
 
+    # Seed the fresh root with the persisted machine-id. This must happen here,
+    # before switch-root: systemd reads /etc/machine-id in early boot, long
+    # before impermanence's mount units exist, and a freshly wiped /etc would
+    # otherwise make it generate a new id on every boot -- which silently breaks
+    # journald boot history (one orphaned /var/log/journal dir per boot).
+    mkdir -p /btrfs_tmp/persist/etc
+    if [[ ! -s /btrfs_tmp/persist/etc/machine-id ]]; then
+        echo "[cleanup] No persisted machine-id, generating one"
+        tr -d '-' < /proc/sys/kernel/random/uuid > /btrfs_tmp/persist/etc/machine-id
+    fi
+    echo "[cleanup] Seeding machine-id $(cat /btrfs_tmp/persist/etc/machine-id)"
+    mkdir -p /btrfs_tmp/root/etc
+    cp /btrfs_tmp/persist/etc/machine-id /btrfs_tmp/root/etc/machine-id
+
     echo "[cleanup] Unmounted /btrfs_tmp"
     umount /btrfs_tmp
   '';

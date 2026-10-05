@@ -18,12 +18,6 @@ in
 
   environment.persistence."/persist" = {
     hideMounts = true;
-    files = [
-      # Keeps journald boot history and D-Bus/systemd identity stable across
-      # reboots; without this, /var/log/journal accumulates one orphaned
-      # directory per boot since each gets a fresh machine-id.
-      "/etc/machine-id"
-    ];
     directories = [
       "/etc/NetworkManager/system-connections"
       "/etc/ssh"
