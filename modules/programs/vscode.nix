@@ -677,6 +677,11 @@ in
         ".config/Code"
         ".config/copilot-chat"
         ".config/github-copilot"
+        {
+          # Claude Code CLI/extension auth token (.credentials.json)
+          directory = ".claude";
+          mode = "0700";
+        }
       ];
     };
   };
