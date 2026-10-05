@@ -16,6 +16,7 @@
         "ca-derivations"
       ];
       auto-optimise-store = true;
+      fallback = true;
       trusted-users = [
         "root"
         "sigurd"
