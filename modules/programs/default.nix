@@ -22,7 +22,19 @@ let
         ouch # painless compression and decompression for your terminal
         paprefs # pulseaudio preferences
         pavucontrol # pulseaudio volume control
-        pgadmin4-desktopmode # Postgres administration tool
+        (pgadmin4-desktopmode.overridePythonAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            substituteInPlace web/pgadmin/utils/driver/psycopg3/encoding.py \
+              --replace-fail "from flask import current_app" "from flask import current_app
+
+            if isinstance(psycopg._encodings._py_codecs, tuple):
+                psycopg._encodings._py_codecs = {
+                    alias: value
+                    for aliases, value in psycopg._encodings._py_codecs
+                    for alias in aliases
+                }"
+          '';
+        })) # Postgres administration tool
         pipewire # control volume
         playerctl # media player control
         poppler # pdf tools
