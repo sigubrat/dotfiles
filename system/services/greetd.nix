@@ -50,5 +50,12 @@
           };
         };
     };
+    # greetd restarts (near-)instantly on exit. If the compositor crashes,
+    # the systemd --user manager may not have finished tearing down
+    # graphical-session(-pre).target before the restarted `uwsm start` runs
+    # its "is a session already active?" check, so it fails immediately and
+    # greetd restarts again -- an unrecoverable loop. A short delay gives
+    # the user manager time to catch up before the next attempt.
+    systemd.services.greetd.serviceConfig.RestartSec = "2s";
   };
 }
