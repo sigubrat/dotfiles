@@ -1,7 +1,6 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 {
   config = lib.mkIf (config.environment.desktop.windowManager == "hyprland") {
@@ -37,7 +36,7 @@
       greetd =
         let
           session = {
-            command = "${lib.getExe config.programs.uwsm.package} start -e -D Hyprland hyprland.desktop";
+            command = "${lib.getExe config.programs.uwsm.package} start -e -D Hyprland hyprland-uwsm.desktop";
             user = "sigurd";
           };
         in
