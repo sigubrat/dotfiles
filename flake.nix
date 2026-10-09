@@ -111,7 +111,21 @@
     };
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        caelestia-cli.follows = "caelestia-cli";
+      };
+    };
+    caelestia-cli = {
+      url = "github:caelestia-dots/cli";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        caelestia-shell.follows = "caelestia-shell";
+      };
+    };
+    caelestia-dots = {
+      url = "github:caelestia-dots/caelestia";
+      flake = false;
     };
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
