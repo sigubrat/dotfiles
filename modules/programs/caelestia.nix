@@ -20,9 +20,7 @@ in
       ];
       cli.enable = true;
       settings = {
-        wallpapers = {
-          path = "/home/sigurd/Sources/wallpapers";
-        };
+        paths.wallpaperDir = "/home/sigurd/Sources/wallpapers";
         bar.workspaces.windowIcons = [
           {
             name = "zen";
@@ -68,8 +66,8 @@ in
           ];
         };
         services = {
-          useTwelveHourClock = false;
-          useFahrenheit = false;
+          clockFormat = "TwentyFourHour";
+          weatherUnits = "Celsius";
         };
         lock = {
           hideNotifs = true;
