@@ -45,6 +45,7 @@ in
     nixgcd = "sudo nix-collect-garbage -d";
     update = "nix flake update";
     supdate = "sudo nix flake update";
+    cupdate = "nix flake update caelestia-shell caelestia-cli caelestia-dots --flake ~/Sources/dotfiles";
     upgrade = "sudo nixos-rebuild switch --flake";
 
     # Locations
