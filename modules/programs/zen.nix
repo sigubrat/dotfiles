@@ -25,5 +25,24 @@ in
         ".zen"
       ];
     };
+    sessionVariables.BROWSER = "zen";
+  };
+
+  xdg.mimeApps = lib.mkIf osConfig.environment.desktop.enable {
+    enable = true;
+    defaultApplications =
+      lib.genAttrs [
+        "text/html"
+        "application/xhtml+xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+        "x-scheme-handler/about"
+        "x-scheme-handler/unknown"
+      ] (_: "zen.desktop")
+      // {
+        # Previously written by the apps themselves; keep them now that the file is managed
+        "x-scheme-handler/slack" = "slack.desktop";
+        "x-scheme-handler/claude-cli" = "claude-code-url-handler.desktop";
+      };
   };
 }
