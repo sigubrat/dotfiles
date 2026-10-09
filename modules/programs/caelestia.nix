@@ -1,4 +1,5 @@
 {
+  inputs,
   osConfig,
   lib,
   ...
@@ -6,7 +7,7 @@
 let
   # Default scheme shipped within the dotfiles repo
   defaultScheme = ./caelestia/default-scheme.conf;
-  zenUserChrome = ./caelestia/zen-userChrome.css;
+  zenUserChrome = "${inputs.caelestia-dots}/zen/userChrome.css";
   spicetifyTheme = ./caelestia/spicetify-user.css;
 in
 {
