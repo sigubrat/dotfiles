@@ -6,10 +6,33 @@
   ...
 }:
 let
+  zenBrowserUnwrapped =
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".zen-browser-unwrapped;
+  zenBrowserUnwrappedFixed =
+    if
+      pkgs.stdenv.hostPlatform.system == "x86_64-linux"
+      && zenBrowserUnwrapped.version == "1.23.3b"
+    then
+      zenBrowserUnwrapped.overrideAttrs (_: {
+        src = pkgs.fetchurl {
+          url = "https://github.com/zen-browser/desktop/releases/download/1.23.3b/zen.linux-x86_64.tar.xz";
+          hash = "sha256-uyBF0+IWVNQP6EElAJLurf0sH8gx7vtQkiJ3PIvcoUk=";
+        };
+      })
+    else
+      zenBrowserUnwrapped;
+
+  zenBrowser = pkgs.wrapFirefox (zenBrowserUnwrappedFixed // {
+    version = zenBrowserUnwrappedFixed.firefoxVersion;
+  }) {
+    pname = "zen-browser";
+    version = zenBrowserUnwrappedFixed.version;
+  };
+
   # Create a wrapper script for zen-browser with Wayland enabled
   zenWithWayland = pkgs.symlinkJoin {
     name = "zen-browser-wayland";
-    paths = [ inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default ];
+    paths = [ zenBrowser ];
     buildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/zen \
