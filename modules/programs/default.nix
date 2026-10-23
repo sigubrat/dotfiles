@@ -73,6 +73,7 @@ in
   ./jq.nix
   ./neovim.nix
   ./pcmanfm.nix
+  ./proton.nix
   ./qt.nix
   ./repl.nix
   ./slack.nix
