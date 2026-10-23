@@ -32,6 +32,12 @@ let
       {
         pname = "zen-browser";
         inherit (zenBrowserUnwrappedFixed) version;
+        extraPolicies.ExtensionSettings = {
+          "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
+          };
+        };
       };
 
   # Create a wrapper script for zen-browser with Wayland enabled
