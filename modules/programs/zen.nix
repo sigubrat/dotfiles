@@ -10,8 +10,7 @@ let
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".zen-browser-unwrapped;
   zenBrowserUnwrappedFixed =
     if
-      pkgs.stdenv.hostPlatform.system == "x86_64-linux"
-      && zenBrowserUnwrapped.version == "1.23.3b"
+      pkgs.stdenv.hostPlatform.system == "x86_64-linux" && zenBrowserUnwrapped.version == "1.23.3b"
     then
       zenBrowserUnwrapped.overrideAttrs (_: {
         src = pkgs.fetchurl {
@@ -22,12 +21,18 @@ let
     else
       zenBrowserUnwrapped;
 
-  zenBrowser = pkgs.wrapFirefox (zenBrowserUnwrappedFixed // {
-    version = zenBrowserUnwrappedFixed.firefoxVersion;
-  }) {
-    pname = "zen-browser";
-    version = zenBrowserUnwrappedFixed.version;
-  };
+  zenBrowser =
+    pkgs.wrapFirefox
+      (
+        zenBrowserUnwrappedFixed
+        // {
+          version = zenBrowserUnwrappedFixed.firefoxVersion;
+        }
+      )
+      {
+        pname = "zen-browser";
+        inherit (zenBrowserUnwrappedFixed) version;
+      };
 
   # Create a wrapper script for zen-browser with Wayland enabled
   zenWithWayland = pkgs.symlinkJoin {
