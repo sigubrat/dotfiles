@@ -397,6 +397,7 @@ in
 
       -- Floating + centered: by title
       for _, t in ipairs({
+          "Proton Pass",
           "Spotify Premium",
           "Spotify",
           "spotify_player",
