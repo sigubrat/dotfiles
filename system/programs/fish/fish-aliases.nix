@@ -54,7 +54,9 @@ in
     work = "cd ~/Projects/workspace";
     tod = "cd ~/Projects/workspace/worksetup";
     frontend = "cd ${nmkp-path}/modules/nmkp-app-core";
+    frontend_run = "cd ${nmkp-path}/modules/nmkp-app-core; npm i; npm run dev";
     backend = "cd ${nmkp-path}";
+    backend_run = "cd ${nmkp-path}; nmkp service start -a; sbtn server/run";
 
     # Danger zone
     nuke = "rm -rf ${nmkp-path}/project target/ ${nmkp-path}/.bloop ${nmkp-path}/.bsp ${nmkp-path}/.metals ";
