@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   osConfig,
   lib,
   ...
@@ -14,6 +15,20 @@ in
   config = lib.mkIf (osConfig.environment.desktop.windowManager == "hyprland") {
     programs.caelestia = {
       enable = true;
+      # Coffee mode attaches its Wayland idle inhibitor to a layer surface, which
+      # Hyprland 0.56 ignores; pause the shell's own idle timers while it is on.
+      package =
+        inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.with-cli.overrideAttrs
+          (old: {
+            postPatch = (old.postPatch or "") + ''
+              substituteInPlace modules/IdleMonitors.qml \
+                --replace-fail \
+                  'readonly property bool enabled: {' \
+                  'readonly property bool enabled: {
+                      if (IdleInhibitor.enabled)
+                          return false;'
+            '';
+          });
       systemd.enable = true;
       systemd.environment = [
         "CAELESTIA_WALLPAPERS_DIR=/home/sigurd/Sources/wallpapers"
