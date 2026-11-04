@@ -10,10 +10,8 @@
 
   service = lib.mkMerge [
     {
-      hypridle = {
-        dpms = false;
-        suspend = false;
-      };
+      # Caelestia shell handles idle (lock, dpms, suspend) itself
+      hypridle.enable = false;
     }
   ];
 }
