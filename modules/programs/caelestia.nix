@@ -21,11 +21,15 @@ in
         inputs.caelestia-shell.packages.${pkgs.stdenv.hostPlatform.system}.with-cli.overrideAttrs
           (old: {
             postPatch = (old.postPatch or "") + ''
-              substituteInPlace modules/IdleMonitors.qml \
+              substituteInPlace daemons/IdleMonitors.qml \
+                --replace-fail \
+                  'import Caelestia.Config' \
+                  'import Caelestia.Config
+              import Caelestia.State' \
                 --replace-fail \
                   'readonly property bool enabled: {' \
                   'readonly property bool enabled: {
-                      if (IdleInhibitor.enabled)
+                      if (RuntimeState.inhibitIdle)
                           return false;'
             '';
           });
