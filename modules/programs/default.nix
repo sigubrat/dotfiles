@@ -59,6 +59,7 @@ in
   ./hyprlock.nix
   ./icue.nix
   ./jq.nix
+  ./libreoffice.nix
   ./neovim.nix
   ./pcmanfm.nix
   ./proton.nix
