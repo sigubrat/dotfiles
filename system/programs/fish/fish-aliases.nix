@@ -22,7 +22,7 @@ in
     ".." = "cd ..";
 
     # Git alias
-    gcm = "git checkout master";
+    gcm = "git checkout staging-next";
     gs = "git status";
     ga = "git add";
     gaa = "git add -A";
